@@ -1,7 +1,7 @@
 # Platform_Story_Game_Framework
  A template for creating a Platforming Game with a focus on Story as a foundation
 
-Credits
+# Credits
  
 Created by Sharb
 
@@ -21,3 +21,6 @@ Font Libre Quake - https://github.com/lavenderdotpet/LibreQuake/blob/main/lq1/gf
 
 Text handler
 Dialogic 2 - https://github.com/dialogic-godot/dialogic
+
+# License
+The game is licensed under the terms of the MIT, read more here https://github.com/Renhoex/Platform_Story_Game_Framework/blob/main/LICENSE
