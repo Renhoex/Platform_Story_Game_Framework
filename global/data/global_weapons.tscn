@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://c4o1piswol38j"]
+
+[ext_resource type="Script" uid="uid://cxh4hccqpo61" path="res://global/data/global_weapons.gd" id="1_v7k3r"]
+[ext_resource type="Script" uid="uid://cbvirg5op23j0" path="res://script/data/weapon_data.gd" id="2_2fvup"]
+[ext_resource type="Texture2D" uid="uid://owxj6kofw2xu" path="res://graphics/item_icons/weapons/Machine.png" id="3_ay5h4"]
+[ext_resource type="Texture2D" uid="uid://cfeqed3yl7m1d" path="res://graphics/item_icons/weapons/MachineIcon.png" id="4_effk1"]
+[ext_resource type="Texture2D" uid="uid://bjseejb8cjfra" path="res://graphics/item_icons/weapons/Wave.png" id="4_y1sbf"]
+[ext_resource type="Texture2D" uid="uid://oouqn2l5jnml" path="res://graphics/item_icons/weapons/Rocket.png" id="5_ua2sj"]
+[ext_resource type="Texture2D" uid="uid://dnwoo71hbwm6e" path="res://graphics/item_icons/weapons/WaveIcon.png" id="6_ljaf7"]
+[ext_resource type="PackedScene" uid="uid://b15s4r2upshma" path="res://entity/weapons/projectile.tscn" id="6_y1sbf"]
+[ext_resource type="Texture2D" uid="uid://dmxag0s1pgodu" path="res://graphics/npc/weapons/Wave.png" id="7_ua2sj"]
+[ext_resource type="Texture2D" uid="uid://bu87c58fwoto8" path="res://graphics/item_icons/weapons/RocketIcon.png" id="8_l5n85"]
+[ext_resource type="PackedScene" uid="uid://b4f50m6ihhmbq" path="res://entity/weapons/explosion.tscn" id="8_pvjlf"]
+[ext_resource type="Texture2D" uid="uid://c1t6o4ln87s43" path="res://graphics/npc/weapons/Rocket.png" id="8_ryedf"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ryedf"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvjlf"]
+atlas = ExtResource("7_ua2sj")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_effk1"]
+atlas = ExtResource("8_ryedf")
+region = Rect2(16, 0, 16, 16)
+
+[node name="GlobalWeapons" type="Node" unique_id=439245190]
+script = ExtResource("1_v7k3r")
+
+[node name="Weapons" type="Node" parent="." unique_id=1704362450]
+
+[node name="Standard" type="Node" parent="Weapons" unique_id=200455206 node_paths=PackedStringArray("projectile")]
+script = ExtResource("2_2fvup")
+max_ammo = 0
+projectile = NodePath("../../Projectiles/Standard")
+projectile_limit = 3
+projectile_fire_animation = "blaster"
+label = "Power Blaster"
+
+[node name="MachineGun" type="Node" parent="Weapons" unique_id=1951374670 node_paths=PackedStringArray("projectile")]
+script = ExtResource("2_2fvup")
+icon = ExtResource("3_ay5h4")
+item_icon = ExtResource("4_effk1")
+max_ammo = 30
+projectile = NodePath("../../Projectiles/Standard")
+refill_rate = 0.1
+shoot_refill_delay = 0.5
+projectile_fire_animation = "blaster"
+label = "Machine Gun"
+auto_fire_rate = 0.1
+
+[node name="Wave" type="Node" parent="Weapons" unique_id=395501572 node_paths=PackedStringArray("projectile")]
+script = ExtResource("2_2fvup")
+icon = ExtResource("4_y1sbf")
+item_icon = ExtResource("6_ljaf7")
+max_ammo = 0
+projectile = NodePath("../../Projectiles/Wave")
+label = "Wave"
+
+[node name="Rocket" type="Node" parent="Weapons" unique_id=1093885129 node_paths=PackedStringArray("projectile")]
+script = ExtResource("2_2fvup")
+icon = ExtResource("5_ua2sj")
+item_icon = ExtResource("8_l5n85")
+max_ammo = 20
+projectile = NodePath("../../Projectiles/Rocket")
+projectile_limit = 2
+projectile_fire_animation = "blaster"
+label = "Rocket Launcher"
+
+[node name="Projectiles" type="Node" parent="." unique_id=2087785469]
+
+[node name="Standard" parent="Projectiles" unique_id=809269486 instance=ExtResource("6_y1sbf")]
+collision_mask = 1
+movement_type = 1
+hit_animation = "wall_hit"
+
+[node name="Wave" parent="Projectiles" unique_id=329394396 instance=ExtResource("6_y1sbf")]
+collision_mask = 1
+movement_type = 2
+animation = 1
+
+[node name="Particles" type="CPUParticles2D" parent="Projectiles/Wave" unique_id=1999779867]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_ryedf")
+texture = SubResource("AtlasTexture_pvjlf")
+speed_scale = 2.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="Rocket" parent="Projectiles" unique_id=2054351147 instance=ExtResource("6_y1sbf")]
+collision_mask = 1
+movement_type = 1
+animation = 2
+collide_scene = ExtResource("8_pvjlf")
+
+[node name="Smoke" type="CPUParticles2D" parent="Projectiles/Rocket" unique_id=206012863]
+show_behind_parent = true
+amount = 4
+texture = SubResource("AtlasTexture_effk1")
+lifetime = 0.5
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0

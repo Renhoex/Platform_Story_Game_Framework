@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://m7bfnypguroo"
+path="res://.godot/imported/07 - Low Fog.ogg-4f677fbc61976b5386ada6e44f36c8df.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/VoltzSupreme_Analog_Tracks/07 - Low Fog.ogg"
+dest_files=["res://.godot/imported/07 - Low Fog.ogg-4f677fbc61976b5386ada6e44f36c8df.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

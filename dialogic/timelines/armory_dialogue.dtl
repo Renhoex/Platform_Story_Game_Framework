@@ -1,0 +1,14 @@
+guy: Took you long enough!
+[signal arg="continue_timeline"]
+[wait time="1.0"]
+[signal arg="continue_timeline"]
+guy: Was begining to think you might have drowned yourself in the small pool.
+guy: Which would have been pretty incredible considering we don't have drowning systems in this framework. that's for the developer to add.
+[signal arg="continue_timeline"]
+[wait time="0.5"]
+[signal arg="continue_timeline"]
+[wait time="0.8"]
+[signal arg="continue_timeline"]
+[signal arg="continue_timeline"]
+guy: I've taken the rest of the weapons already, left one here for you, should be enough to blast through the blocks to the rest of the facility.
+set {EVENTS.talked_to_guy} = true

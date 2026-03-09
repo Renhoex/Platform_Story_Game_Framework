@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://bponaxtvw85ry"
+path="res://.godot/imported/AsciFont.png-54690bb56b54b41f22fd2ff30e80c903.fontdata"
+
+[deps]
+
+source_file="res://graphics/font/AsciFont.png"
+dest_files=["res://.godot/imported/AsciFont.png-54690bb56b54b41f22fd2ff30e80c903.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("0-127")
+kerning_pairs=PackedStringArray()
+columns=16
+rows=8
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+ascent=0
+descent=0
+fallbacks=[]
+compress=false
+scaling_mode=0

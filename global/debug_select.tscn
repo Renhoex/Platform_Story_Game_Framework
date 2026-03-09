@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bgp4f6dnlcd5r"]
+
+[ext_resource type="Script" uid="uid://bvpixo7xvitbt" path="res://global/debug_select.gd" id="1_qwtt2"]
+
+[node name="debug_select" type="CanvasLayer" unique_id=698300027]
+script = ExtResource("1_qwtt2")
+
+[node name="Panel" type="Panel" parent="." unique_id=275327734]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.0
+offset_top = 8.0
+offset_right = 136.0
+offset_bottom = 48.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Panel" unique_id=645887099]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+Platform Story Game Framework
+Debug scene select"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="." unique_id=2045630042]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.0
+offset_top = 64.0
+offset_right = 136.0
+offset_bottom = 232.0
+grow_horizontal = 2
+
+[node name="List" type="ScrollContainer" parent="Panel2" unique_id=1206834259]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+
+[node name="StageContainer" type="VBoxContainer" parent="Panel2/List" unique_id=1183953492]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1

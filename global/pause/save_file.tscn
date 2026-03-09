@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://c5hiccm1k77xi"]
+
+[ext_resource type="Script" uid="uid://haprwyn5u871" path="res://global/pause/save_file.gd" id="1_cc63i"]
+
+[node name="SaveFile" type="Panel" unique_id=934517452]
+custom_minimum_size = Vector2(280, 48)
+anchors_preset = -1
+anchor_right = 0.87500006
+anchor_bottom = 0.2
+offset_right = -3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cc63i")
+
+[node name="File" type="Label" parent="." unique_id=423069094]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 66.0
+offset_bottom = 10.0
+text = "Save 1"
+
+[node name="Date" type="Label" parent="." unique_id=1340013718]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 30.0
+offset_right = 66.0
+offset_bottom = 38.0
+text = "Date: "
+
+[node name="Playtime" type="Label" parent="." unique_id=1666403757]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 38.0
+offset_right = 82.0
+offset_bottom = 46.0
+text = "Playtime: "
+
+[node name="Room" type="Label" parent="." unique_id=1371582278]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 38.0
+offset_right = 278.0
+offset_bottom = 46.0
+text = "Unkown"
+horizontal_alignment = 2
+
+[node name="WeaponDisplay" type="HBoxContainer" parent="." unique_id=1818892905]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 12.0
+offset_right = 272.0
+offset_bottom = 28.0

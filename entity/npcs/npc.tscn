@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://bpgrkqkpqga1x"]
+
+[ext_resource type="Script" uid="uid://dol6lgkhb06h0" path="res://entity/npcs/npc.gd" id="1_jgu4p"]
+[ext_resource type="Texture2D" uid="uid://26akvcxvvkjw" path="res://graphics/npc/NPC.png" id="2_4egca"]
+[ext_resource type="Script" uid="uid://sfa1smqeigu1" path="res://entity/npcs/states/base/idle.gd" id="3_4egca"]
+[ext_resource type="Script" uid="uid://br6s6knq0iqhv" path="res://entity/npcs/states/base/walk.gd" id="4_vndfo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vndfo"]
+size = Vector2(12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig6wi"]
+atlas = ExtResource("2_4egca")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v2m4"]
+atlas = ExtResource("2_4egca")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufgwe"]
+atlas = ExtResource("2_4egca")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpf1c"]
+atlas = ExtResource("2_4egca")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fotgw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig6wi")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0v2m4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufgwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpf1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufgwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig6wi")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="Animation" id="Animation_vndfo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Npc:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+
+[sub_resource type="Animation" id="Animation_0v2m4"]
+resource_name = "fall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Npc:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"fall"]
+}
+
+[sub_resource type="Animation" id="Animation_ufgwe"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Npc:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+
+[sub_resource type="Animation" id="Animation_dpf1c"]
+resource_name = "walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Npc:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ig6wi"]
+_data = {
+&"RESET": SubResource("Animation_vndfo"),
+&"fall": SubResource("Animation_0v2m4"),
+&"idle": SubResource("Animation_ufgwe"),
+&"walk": SubResource("Animation_dpf1c")
+}
+
+[node name="NPC" type="CharacterBody2D" unique_id=1103506319 node_paths=PackedStringArray("sprite_group", "animator")]
+collision_layer = 1024
+script = ExtResource("1_jgu4p")
+sprite_group = NodePath("SpriteGroup")
+animator = NodePath("SpriteGroup/Animator")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=553866789]
+shape = SubResource("RectangleShape2D_vndfo")
+
+[node name="SpriteGroup" type="CanvasGroup" parent="." unique_id=1910718740]
+
+[node name="Npc" type="AnimatedSprite2D" parent="SpriteGroup" unique_id=665097411]
+sprite_frames = SubResource("SpriteFrames_fotgw")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Animator" type="AnimationPlayer" parent="SpriteGroup" unique_id=92058150]
+libraries/ = SubResource("AnimationLibrary_ig6wi")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=428765606]
+modulate = Color(1, 1, 1, 0.15686275)
+rect = Rect2(-64, -64, 128, 128)
+
+[node name="StateMachine" type="Node" parent="." unique_id=823586117]
+unique_name_in_owner = true
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=970577745]
+script = ExtResource("3_4egca")
+metadata/_custom_type_script = "uid://bnrk2bueoieq3"
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=2037483513]
+script = ExtResource("4_vndfo")
+metadata/_custom_type_script = "uid://bnrk2bueoieq3"

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://vvge711y3dmw"]
+
+[ext_resource type="Script" uid="uid://buk34wth2k05h" path="res://script/data/item_data.gd" id="1_g8gj1"]
+[ext_resource type="Script" uid="uid://63ryhaontjfm" path="res://global/data/global_items.gd" id="1_mpfia"]
+[ext_resource type="Texture2D" uid="uid://cr1ry5x0dl3n0" path="res://graphics/item_icons/HeartContainer.png" id="3_uvvdj"]
+[ext_resource type="Texture2D" uid="uid://deileotx7dgqr" path="res://graphics/item_icons/WeaponContainer.png" id="4_h4qma"]
+
+[node name="GlobalItems" type="Node" unique_id=517459248]
+script = ExtResource("1_mpfia")
+
+[node name="ZooKey" type="Node" parent="." unique_id=1019045325]
+script = ExtResource("1_g8gj1")
+label = "Zoo Key"
+inspect_timeline = "uid://dbowjupfisvjn"
+metadata/_custom_type_script = "uid://buk34wth2k05h"
+
+[node name="HealthUpgrade" type="Node" parent="." unique_id=1749879597]
+script = ExtResource("1_g8gj1")
+icon = ExtResource("3_uvvdj")
+label = "Health up"
+metadata/_custom_type_script = "uid://buk34wth2k05h"
+
+[node name="RocketUpgrade" type="Node" parent="." unique_id=870859682]
+script = ExtResource("1_g8gj1")
+icon = ExtResource("4_h4qma")
+label = "Rocket upgrade"
+metadata/_custom_type_script = "uid://buk34wth2k05h"

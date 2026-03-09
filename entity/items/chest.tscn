@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://b3rsiqs1s3shc"]
+
+[ext_resource type="Script" uid="uid://mixeighucx5f" path="res://entity/items/chest.gd" id="1_dtwap"]
+[ext_resource type="Texture2D" uid="uid://dbyw1tdxc4keh" path="res://graphics/interacts/Chest.png" id="2_qgak1"]
+[ext_resource type="Script" uid="uid://kgq02v78e6jr" path="res://script/sequence_components/classes/timeline_manager.gd" id="3_dtwap"]
+[ext_resource type="Script" uid="uid://3gbch5m0joak" path="res://script/sequence_components/dialogic_related/set_item_properties.gd" id="4_7v81b"]
+[ext_resource type="Script" uid="uid://scuo1poq1bg4" path="res://script/sequence_components/sprite_actions/set_sprite_frame.gd" id="5_8sn4o"]
+[ext_resource type="Script" uid="uid://b72nmsuvttep" path="res://script/sequence_components/dialogic_related/call_dialogic_timeline.gd" id="6_64bcy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tyxve"]
+size = Vector2(4, 4)
+
+[node name="Chest" type="Area2D" unique_id=141113660 node_paths=PackedStringArray("timeline_target")]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_dtwap")
+timeline_target = NodePath("ChestTimeline")
+unlock_after_sequence = true
+metadata/_custom_type_script = "uid://2miwjqo8t1qo"
+
+[node name="Chest" type="Sprite2D" parent="." unique_id=906196780]
+texture = ExtResource("2_qgak1")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=152456903]
+shape = SubResource("RectangleShape2D_tyxve")
+
+[node name="ChestTimeline" type="Node" parent="." unique_id=661497166]
+script = ExtResource("3_dtwap")
+
+[node name="SetItem" type="Node" parent="ChestTimeline" unique_id=1474949812]
+script = ExtResource("4_7v81b")
+
+[node name="ChangeChestFrame" type="Node" parent="ChestTimeline" unique_id=356341900 node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_8sn4o")
+sprite = NodePath("../../Chest")
+set_frame = 1
+
+[node name="WeaponChest" type="Node" parent="ChestTimeline" unique_id=1020888693]
+script = ExtResource("6_64bcy")
+timeline = "uid://bwu6n81ardom0"

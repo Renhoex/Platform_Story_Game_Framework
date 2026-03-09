@@ -1,0 +1,4 @@
+Save game?
+- Yes
+	do Global.call_save_menu()
+- No

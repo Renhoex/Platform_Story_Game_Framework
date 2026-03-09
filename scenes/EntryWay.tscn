@@ -1,0 +1,204 @@
+[gd_scene format=4 uid="uid://bvelm4q4yu3ao"]
+
+[ext_resource type="Script" uid="uid://b3f8pavovxg0t" path="res://script/stage_handler.gd" id="1_77dp3"]
+[ext_resource type="PackedScene" uid="uid://bftlgmdbuxl4k" path="res://entity/player/Player.tscn" id="2_8uh7m"]
+[ext_resource type="AudioStream" uid="uid://m7bfnypguroo" path="res://audio/music/VoltzSupreme_Analog_Tracks/07 - Low Fog.ogg" id="2_uacia"]
+[ext_resource type="Texture2D" uid="uid://bauhu1id6fd7s" path="res://graphics/tiles/TilesetTemplate.png" id="3_2rohy"]
+[ext_resource type="PackedScene" uid="uid://ck35ggynovue2" path="res://entity/general/area.tscn" id="3_6uqi0"]
+[ext_resource type="TileSet" uid="uid://clvtg8expv1se" path="res://tileset/GenericTiles.tres" id="3_danon"]
+[ext_resource type="Script" uid="uid://bm2nk6sck1waf" path="res://script/game_camera.gd" id="4_ppyta"]
+[ext_resource type="Texture2D" uid="uid://eyp21spypg2b" path="res://graphics/backgrounds/snow_bg.png" id="8_yk7ts"]
+[ext_resource type="Texture2D" uid="uid://bgv8a41460kf0" path="res://graphics/backgrounds/cloudLayer1.png" id="9_uacia"]
+[ext_resource type="Script" uid="uid://2miwjqo8t1qo" path="res://script/sequence_components/classes/interact_trigger.gd" id="10_ajshl"]
+[ext_resource type="Script" uid="uid://kgq02v78e6jr" path="res://script/sequence_components/classes/timeline_manager.gd" id="10_yk7ts"]
+[ext_resource type="Texture2D" uid="uid://dtqe5pmuctnoc" path="res://graphics/interacts/Sign.png" id="11_d7wv5"]
+[ext_resource type="Script" uid="uid://doavmky5w26mo" path="res://script/sequence_components/node_actions/visbility_setter.gd" id="12_7mbro"]
+[ext_resource type="Script" uid="uid://c23w18ufbe0cv" path="res://script/sequence_components/node_actions/play_sound.gd" id="13_ff6ho"]
+[ext_resource type="AudioStream" uid="uid://dpjwnmbd265uq" path="res://audio/objects/door.wav" id="14_7yos8"]
+[ext_resource type="Script" uid="uid://moljmrl158ru" path="res://script/sequence_components/node_actions/fade_to.gd" id="15_2rohy"]
+[ext_resource type="Script" uid="uid://gdd2sye8w0cy" path="res://script/sequence_components/node_actions/change_scene.gd" id="15_aiakx"]
+[ext_resource type="Script" uid="uid://o6aeatn8nwgk" path="res://script/sequence_components/node_actions/teleport_node.gd" id="15_ff6ho"]
+[ext_resource type="Script" uid="uid://b72nmsuvttep" path="res://script/sequence_components/dialogic_related/call_dialogic_timeline.gd" id="18_g3om5"]
+[ext_resource type="Script" uid="uid://bjy0xo2idk7rh" path="res://script/sequence_components/dialogic_related/action_on_variable_bool.gd" id="18_jifqw"]
+[ext_resource type="Script" uid="uid://djbk6bdxvhnbc" path="res://script/sequence_components/player_actions/lock_player.gd" id="19_23cy4"]
+[ext_resource type="PackedScene" uid="uid://cp5yfcrvk5eab" path="res://entity/items/save_terminal.tscn" id="22_4scpy"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yk7ts"]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajshl"]
+size = Vector2(8, 8)
+
+[node name="EntryWay" type="Node2D" unique_id=1714093947 node_paths=PackedStringArray("room_start_target")]
+script = ExtResource("1_77dp3")
+stage_song = ExtResource("2_uacia")
+room_start_target = NodePath("EventTimelines/Start")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=546483137]
+texture_filter = 1
+texture_repeat = 1
+tile_map_data = PackedByteArray("AAAAAA0AAAAAAAAAAAABAA0AAAAAAAAAAAARAA0AAAAAAAAAAAASAA0AAAAAAAAAAAATAA0AAAAAAAAAAAAAAA4AAAAAAAAAAAABAA4AAAAAAAAAAAACAA4AAAAAAAAAAAADAA4AAAAAAAAAAAAEAA4AAAAAAAAAAAAFAA4AAAAAAAAAAAAGAA4AAAAAAAAAAAAHAA4AAAAAAAAAAAAIAA4AAAAAAAAAAAAJAA4AAAAAAAAAAAAKAA4AAAAAAAAAAAALAA4AAAAAAAAAAAAMAA4AAAAAAAAAAAANAA4AAAAAAAAAAAAOAA4AAAAAAAAAAAAPAA4AAAAAAAAAAAAQAA4AAAAAAAAAAAARAA4AAAAAAAAAAAASAA4AAAAAAAAAAAATAA4AAAAAAAAAAAAAAAsAAAADAAQAAAAAAAwAAAACAAMAAAAAAAYAAAACAAMAAAAAAAcAAAAAAAAAAAAAAAkAAAADAAQAAAAAAAgAAAACAAIAAAAUAA8AAAABAAMAAAAUAA4AAAADAAQAAAAUAA0AAAADAAQAAAAUAAwAAAADAAQAAAAUAAsAAAADAAQAAAAUAAoAAAADAAQAAAAUAAkAAAADAAQAAAAUAAgAAAADAAQAAAAUAAcAAAADAAQAAAAUAAYAAAADAAQAAAAUAAUAAAADAAQAAAAUAAQAAAADAAQAAAAUAAMAAAADAAQAAAAUAAIAAAADAAQAAAAUAAEAAAADAAQAAAAUAAAAAAADAAQAAAAUAP//AAABAAIAAAATAA8AAAAAAAUAAAATAAwAAAAAAAAAAAATAAsAAAAAAAAAAAATAAoAAAAAAAAAAAATAAkAAAAAAAAAAAATAAgAAAAAAAAAAAATAAcAAAAAAAAAAAATAAYAAAAAAAAAAAATAAUAAAAAAAAAAAATAAQAAAAAAAAAAAATAAMAAAAAAAAAAAATAAIAAAAAAAAAAAATAAEAAAAAAAAAAAATAAAAAAAAAAAAAAATAP//AAAAAAQAAAASAA8AAAAAAAUAAAASAAwAAAAAAAAAAAASAAsAAAAAAAAAAAASAAoAAAAAAAAAAAASAAkAAAAAAAAAAAASAAgAAAACAAQAAAASAAcAAAACAAQAAAASAAYAAAACAAQAAAASAAUAAAAAAAAAAAASAAQAAAAAAAAAAAASAAMAAAAAAAAAAAASAAIAAAAAAAAAAAASAAEAAAAAAAAAAAASAAAAAAAAAAAAAAASAP//AAAAAAQAAAARAA8AAAAAAAUAAAARAAAAAAAAAAAAAAARAP//AAAAAAQAAAAQAA8AAAAAAAUAAAAQAAAAAAAAAAAAAAAQAP//AAAAAAQAAAAPAA8AAAAAAAUAAAAPAAAAAAAAAAAAAAAPAP//AAAAAAQAAAAOAA8AAAAAAAUAAAAOAAAAAAAAAAAAAAAOAP//AAAAAAQAAAANAA8AAAAAAAUAAAANAAAAAAAAAAUAAAANAP//AAAAAAQAAAAMAA8AAAAAAAUAAAAMAAAAAAAAAAUAAAAMAP//AAAAAAQAAAALAA8AAAAAAAUAAAALAAAAAAAAAAUAAAALAP//AAAAAAQAAAAKAA8AAAAAAAUAAAAKAAAAAAAAAAUAAAAKAP//AAAAAAQAAAAJAA8AAAAAAAUAAAAJAAAAAAAAAAUAAAAJAP//AAAAAAQAAAAIAA8AAAAAAAUAAAAIAAAAAAAAAAUAAAAIAP//AAAAAAQAAAAHAA8AAAAAAAUAAAAHAAAAAAAAAAUAAAAHAP//AAAAAAQAAAAGAA8AAAAAAAUAAAAGAAAAAAAAAAUAAAAGAP//AAAAAAQAAAAFAA8AAAAAAAUAAAAFAAAAAAAAAAUAAAAFAP//AAAAAAQAAAAEAA8AAAAAAAUAAAAEAAAAAAAAAAUAAAAEAP//AAAAAAQAAAADAA8AAAAAAAUAAAADAAAAAAAAAAUAAAADAP//AAAAAAQAAAACAA8AAAAAAAUAAAACAAAAAAAAAAUAAAACAP//AAAAAAQAAAABAA8AAAAAAAUAAAABAAAAAAAAAAUAAAABAP//AAAAAAQAAAAAAA8AAAAAAAUAAAAAAAoAAAADAAQAAAAAAAUAAAADAAQAAAAAAAQAAAADAAQAAAAAAAMAAAADAAQAAAAAAAIAAAADAAQAAAAAAAEAAAADAAQAAAAAAAAAAAAAAAAAAAAAAP//AAAAAAQAAAD//w8AAAAAAAMAAAD//w4AAAACAAQAAAD//w0AAAACAAQAAAD//wwAAAACAAQAAAD//wsAAAACAAQAAAD//woAAAACAAQAAAD//wkAAAACAAQAAAD//wgAAAACAAQAAAD//wcAAAACAAQAAAD//wYAAAACAAQAAAD//wUAAAACAAQAAAD//wQAAAACAAQAAAD//wMAAAACAAQAAAD//wIAAAACAAQAAAD//wEAAAACAAQAAAD//wAAAAACAAQAAAD/////AAAAAAIAAAAQAA0AAAAAAAAAAAAPAA0AAAAAAAAAAAAOAA0AAAAAAAAAAAANAA0AAAAAAAAAAAAMAA0AAAAAAAAAAAAJAA0AAAAAAAQAAAAIAA0AAAAAAAQAAAAHAA0AAAAAAAQAAAAGAA0AAAAAAAQAAAADAA0AAAAAAAAAAAACAA0AAAAAAAAAAAARAAUAAAAAAAUAAAARAAQAAAAAAAAAAAAQAAUAAAAAAAUAAAAQAAQAAAAAAAAAAAAPAAUAAAAAAAUAAAAPAAQAAAAAAAAAAAAOAAUAAAAAAAUAAAAOAAQAAAAAAAAAAAANAAUAAAAAAAUAAAANAAQAAAAAAAQAAAAMAAUAAAAAAAUAAAAMAAQAAAAAAAQAAAARAAMAAAAAAAAAAAARAAIAAAAAAAAAAAARAAEAAAAAAAAAAAAQAAMAAAAAAAAAAAAQAAIAAAAAAAAAAAAQAAEAAAAAAAAAAAAPAAMAAAAAAAAAAAAPAAIAAAAAAAAAAAAPAAEAAAAAAAAAAAAOAAMAAAACAAQAAAAOAAIAAAACAAQAAAAOAAEAAAACAAQAAAALAAUAAAAAAAUAAAALAAQAAAAAAAQAAAAKAAUAAAAAAAUAAAAKAAQAAAAAAAQAAAAJAAUAAAAAAAUAAAAJAAQAAAAAAAQAAAAIAAUAAAAAAAUAAAAIAAQAAAAAAAQAAAAJAAoAAAABAAMAAAAIAAoAAAAAAAUAAAAHAAoAAAAAAAUAAAAGAAoAAAAAAAMAAAAJAAkAAAABAAIAAAAIAAkAAAAAAAQAAAAHAAkAAAAAAAQAAAADAAgAAAABAAMAAAADAAcAAAACAAYAAAACAAgAAAAAAAUAAAACAAcAAAAFAAAAAAABAAgAAAAAAAUAAAABAAcAAAAAAAAAAAABAAYAAAAAAAQAAAAEAAwAAAALAAAAAAADAAwAAAAAAAQAAAACAAwAAAAAAAQAAAABAAwAAAAAAAQAAAAKAAwAAAALAAAAAAAGAAwAAAALAAAAAAAHAAwAAAAMAAAAAAAIAAwAAAALAAAAAAAJAAwAAAAMAAAAAAAFAAwAAAAMAAAAAAALAAwAAAAMAAAAAAAFAA0AAAAGAAIAAAAKAA0AAAAEAAIAAAARAAwAAAAAAAAAAAARAAsAAAAAAAAAAAAQAAwAAAAAAAAAAAAQAAsAAAAAAAAAAAARAAoAAAAAAAAAAAARAAkAAAAAAAQAAAAQAAoAAAAAAAAAAAAQAAkAAAAAAAQAAAANAAsAAAAAAAIAAAANAAwAAAADAAMAAAAOAAsAAAAAAAQAAAAOAAwAAAAAAAAAAAAPAAkAAAAAAAIAAAAPAAoAAAACAAQAAAAPAAsAAAAAAAAAAAAPAAwAAAAAAAAAAAAMAAwAAAAAAAQAAAALAAMAAAAIAAIAAAAHAAUAAAAAAAYAAAAGAAkAAAAAAAIAAAAGAAUAAAADAAgAAAAGAAgAAAADAAkAAAAGAAcAAAACAAkAAAAGAAYAAAACAAkAAAAFAAUAAAAAAAgAAAAEAAcAAAABAAgAAAABAAsAAAAIAAgAAAACAAsAAAAIAAgAAAABAAoAAAAIAAgAAAANAAMAAAAIAAgAAAAQAAgAAAAHAAkAAAA=")
+tile_set = ExtResource("3_danon")
+
+[node name="StartDoor" type="Node2D" parent="." unique_id=344908221]
+position = Vector2(184, 56)
+
+[node name="Player" parent="." unique_id=580920674 instance=ExtResource("2_8uh7m")]
+position = Vector2(248, 136)
+ready_on_spawn = false
+
+[node name="GameCamera" type="Camera2D" parent="." unique_id=848801069 node_paths=PackedStringArray("target_node")]
+position = Vector2(128, 189)
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("4_ppyta")
+target_node = NodePath("../Player")
+
+[node name="Barrier" parent="." unique_id=1613246382 instance=ExtResource("3_6uqi0")]
+
+[node name="BG" type="CanvasLayer" parent="." unique_id=1361254584]
+layer = -10
+
+[node name="Distance" type="Parallax2D" parent="BG" unique_id=806665811]
+scroll_scale = Vector2(1.1, 1)
+repeat_size = Vector2(94, 0)
+repeat_times = 22
+
+[node name="BG" type="Sprite2D" parent="BG/Distance" unique_id=1411784389]
+position = Vector2(0, 136)
+texture = ExtResource("8_yk7ts")
+region_enabled = true
+region_rect = Rect2(0, -147, 96, 296)
+
+[node name="Clouds" type="Parallax2D" parent="BG" unique_id=203600858]
+scroll_scale = Vector2(1.5, 1)
+repeat_size = Vector2(256, 0)
+autoscroll = Vector2(-10, 0)
+repeat_times = 22
+
+[node name="BG" type="Sprite2D" parent="BG/Clouds" unique_id=2000064124]
+material = SubResource("CanvasItemMaterial_yk7ts")
+position = Vector2(160, 40)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_uacia")
+flip_v = true
+region_rect = Rect2(0, -147, 96, 296)
+
+[node name="ColorRect" type="ColorRect" parent="BG" unique_id=475395856]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.039215688, 0.21960784, 0.827451)
+
+[node name="DoorCover" type="Sprite2D" parent="." unique_id=742880127]
+position = Vector2(184, 48)
+texture = ExtResource("3_2rohy")
+region_enabled = true
+region_rect = Rect2(128, 0, 16, 32)
+
+[node name="Door" type="Area2D" parent="." unique_id=818685855 node_paths=PackedStringArray("timeline_target")]
+position = Vector2(184, 56)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("10_ajshl")
+timeline_target = NodePath("../EventTimelines/OpenDoor")
+unlock_after_sequence = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door" unique_id=351965864]
+shape = SubResource("RectangleShape2D_ajshl")
+
+[node name="Sign" type="Area2D" parent="." unique_id=86427438 node_paths=PackedStringArray("timeline_target")]
+position = Vector2(128, 136)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("10_ajshl")
+timeline_target = NodePath("../EventTimelines/Sign")
+unlock_after_sequence = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign" unique_id=36855635]
+shape = SubResource("RectangleShape2D_ajshl")
+
+[node name="Sign" type="Sprite2D" parent="Sign" unique_id=1424022250]
+texture = ExtResource("11_d7wv5")
+
+[node name="EventTimelines" type="Node" parent="." unique_id=1155557782]
+
+[node name="OpenDoor" type="Node" parent="EventTimelines" unique_id=1504843930]
+script = ExtResource("10_yk7ts")
+
+[node name="HideSprite" type="Node" parent="EventTimelines/OpenDoor" unique_id=936231870 node_paths=PackedStringArray("set_node")]
+script = ExtResource("12_7mbro")
+set_node = NodePath("../../../DoorCover")
+
+[node name="DoorSound" type="Node" parent="EventTimelines/OpenDoor" unique_id=1052562661]
+script = ExtResource("13_ff6ho")
+sound = ExtResource("14_7yos8")
+
+[node name="Fade" type="Node" parent="EventTimelines/OpenDoor" unique_id=370274572]
+script = ExtResource("15_2rohy")
+fade_time = 0.2
+
+[node name="Timer" type="Timer" parent="EventTimelines/OpenDoor" unique_id=737293124]
+wait_time = 0.2
+one_shot = true
+
+[node name="Change" type="Node" parent="EventTimelines/OpenDoor" unique_id=1340304857]
+script = ExtResource("15_aiakx")
+connected_sequence_name = "WestStartDoor"
+scene_file = "res://scenes/MainArea.tscn"
+
+[node name="DoorStart" type="Node" parent="EventTimelines" unique_id=1976677946]
+script = ExtResource("10_yk7ts")
+
+[node name="TeleportPlayer" type="Node" parent="EventTimelines/DoorStart" unique_id=746214150 node_paths=PackedStringArray("teleport_to", "node_to_teleport")]
+script = ExtResource("15_ff6ho")
+teleport_to = NodePath("../../../StartDoor")
+node_to_teleport = NodePath("../../../Player")
+
+[node name="Start" type="Node" parent="EventTimelines" unique_id=1499426577]
+script = ExtResource("10_yk7ts")
+
+[node name="CancelAfterIntro" type="Node" parent="EventTimelines/Start" unique_id=1896038862]
+script = ExtResource("18_jifqw")
+dialogic_variable = "EVENTS.intro_played"
+
+[node name="LockPlayer" type="Node" parent="EventTimelines/Start" unique_id=839205406 node_paths=PackedStringArray("player")]
+script = ExtResource("19_23cy4")
+player = NodePath("../../../Player")
+lock_player = true
+
+[node name="Fade" type="Node" parent="EventTimelines/Start" unique_id=146026011]
+script = ExtResource("15_2rohy")
+fade_time = 0.1
+
+[node name="CallTimeline" type="Node" parent="EventTimelines/Start" unique_id=1879849054]
+script = ExtResource("18_g3om5")
+timeline = "test"
+
+[node name="Fade2" type="Node" parent="EventTimelines/Start" unique_id=324001725]
+script = ExtResource("15_2rohy")
+color_fade = Color(0, 0, 0, 0)
+
+[node name="Timer" type="Timer" parent="EventTimelines/Start" unique_id=967069369]
+wait_time = 0.5
+one_shot = true
+
+[node name="UnlockPlayer" type="Node" parent="EventTimelines/Start" unique_id=2138875518 node_paths=PackedStringArray("player")]
+script = ExtResource("19_23cy4")
+player = NodePath("../../../Player")
+
+[node name="Sign" type="Node" parent="EventTimelines" unique_id=2045073294]
+script = ExtResource("10_yk7ts")
+
+[node name="CallTimeline" type="Node" parent="EventTimelines/Sign" unique_id=1448083231]
+script = ExtResource("18_g3om5")
+timeline = "sign"
+
+[node name="UnlockPlayer" type="Node" parent="EventTimelines/Sign" unique_id=1987033416 node_paths=PackedStringArray("player")]
+script = ExtResource("19_23cy4")
+player = NodePath("../../../Player")
+
+[node name="Save" parent="." unique_id=141113660 instance=ExtResource("22_4scpy")]
+position = Vector2(272, 120)

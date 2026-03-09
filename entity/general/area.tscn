@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ck35ggynovue2"]
+
+[ext_resource type="Script" uid="uid://ca5oy7p40qe75" path="res://entity/general/area.gd" id="1_fotfk"]
+
+[node name="Area" type="ReferenceRect" unique_id=434518705 groups=["area"]]
+offset_right = 320.0
+offset_bottom = 240.0
+border_color = Color(1, 0, 0, 0.5019608)
+script = ExtResource("1_fotfk")

@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://b4f50m6ihhmbq"]
+
+[ext_resource type="Script" uid="uid://bgjc0dif1igom" path="res://entity/weapons/explosion.gd" id="1_t86w0"]
+[ext_resource type="Texture2D" uid="uid://cgytupy4w8asj" path="res://graphics/effects/BigPuff.png" id="1_wn8ut"]
+[ext_resource type="Texture2D" uid="uid://dxilxfb70rawl" path="res://graphics/effects/Puff.png" id="2_b1d5s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1d5s"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t86w0"]
+atlas = ExtResource("1_wn8ut")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05tc8"]
+atlas = ExtResource("1_wn8ut")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjd7e"]
+atlas = ExtResource("1_wn8ut")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggium"]
+atlas = ExtResource("1_wn8ut")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_58mgy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t86w0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05tc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjd7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggium")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_t86w0"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_05tc8"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -0.0009685755), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Explosion" type="Area2D" unique_id=1714633542]
+z_index = 10
+collision_layer = 256
+script = ExtResource("1_t86w0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1074441077]
+shape = SubResource("CircleShape2D_b1d5s")
+
+[node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=1759464771]
+sprite_frames = SubResource("SpriteFrames_58mgy")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+
+[node name="Smoke" type="CPUParticles2D" parent="." unique_id=1562058009]
+material = SubResource("CanvasItemMaterial_t86w0")
+emitting = false
+amount = 16
+texture = ExtResource("2_b1d5s")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+emission_shape = 2
+emission_sphere_radius = 16.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 90.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.0
+orbit_velocity_curve = SubResource("Curve_05tc8")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[connection signal="animation_finished" from="Explosion" to="." method="_on_explosion_animation_finished"]
+[connection signal="finished" from="Smoke" to="." method="_on_smoke_finished"]

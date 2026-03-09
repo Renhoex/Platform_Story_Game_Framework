@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://mhg7l6llde5r"
+path="res://.godot/imported/Voltz Supreme - Mind Float.ogg-02b8c19a1dee68d1300db43f49343566.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/VoltzSupreme_Analog_Tracks/Voltz Supreme - Mind Float.ogg"
+dest_files=["res://.godot/imported/Voltz Supreme - Mind Float.ogg-02b8c19a1dee68d1300db43f49343566.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

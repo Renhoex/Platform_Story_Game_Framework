@@ -1,0 +1,4 @@
+if {EVENTS.zoo_door_unlocked} == false:
+	This must be the key to unlock the door out of here into the main showcase rooms
+else:
+	It's a used key, the door broke when you unlocked it so you might be able to resell this for a few bucks

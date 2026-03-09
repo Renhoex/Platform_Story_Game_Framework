@@ -1,0 +1,4 @@
+do DialogicFunctions.stop_global_music()
+if {BOSS.boss_encountered} == false:
+	... Entering my lair? You best be ballin!
+set {BOSS.boss_encountered} = true

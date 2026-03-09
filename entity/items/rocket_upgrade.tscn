@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://blt00fuivhusu"]
+
+[ext_resource type="Script" uid="uid://cnle8nw82eafg" path="res://entity/items/upgrade.gd" id="1_yvt3g"]
+[ext_resource type="Texture2D" uid="uid://cdye6g6vr6ynx" path="res://graphics/items/RocketContainer.png" id="2_6l23v"]
+[ext_resource type="Script" uid="uid://kgq02v78e6jr" path="res://script/sequence_components/classes/timeline_manager.gd" id="3_x8wca"]
+[ext_resource type="Script" uid="uid://3gbch5m0joak" path="res://script/sequence_components/dialogic_related/set_item_properties.gd" id="4_6utmj"]
+[ext_resource type="Script" uid="uid://b72nmsuvttep" path="res://script/sequence_components/dialogic_related/call_dialogic_timeline.gd" id="5_caq3c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tyxve"]
+size = Vector2(4, 4)
+
+[node name="RocketUpgrade" type="Area2D" unique_id=141113660 node_paths=PackedStringArray("set_item", "timeline_target")]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_yvt3g")
+item_id = "RocketUpgrade"
+set_item = NodePath("Upgrade/SetItem")
+upgrade_type = 1
+to_add = 2
+timeline_target = NodePath("Upgrade")
+unlock_after_sequence = true
+one_time = true
+metadata/_custom_type_script = "uid://2miwjqo8t1qo"
+
+[node name="Rocket" type="Sprite2D" parent="." unique_id=906196780]
+texture = ExtResource("2_6l23v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=152456903]
+shape = SubResource("RectangleShape2D_tyxve")
+
+[node name="Upgrade" type="Node" parent="." unique_id=661497166]
+script = ExtResource("3_x8wca")
+
+[node name="SetItem" type="Node" parent="Upgrade" unique_id=1474949812]
+script = ExtResource("4_6utmj")
+item_id = "HealthUpgrade"
+
+[node name="HealthUpgrade" type="Node" parent="Upgrade" unique_id=1020888693]
+script = ExtResource("5_caq3c")
+timeline = "uid://d2wnxbpnuu8wr"
+
+[connection signal="interacted" from="." to="." method="_on_interacted"]
+[connection signal="sequence_finished" from="Upgrade" to="." method="_on_upgrade_sequence_finished"]

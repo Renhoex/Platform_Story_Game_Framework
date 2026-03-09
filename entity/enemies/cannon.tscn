@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://cdv765k003ddo"]
+
+[ext_resource type="Script" uid="uid://boxyfwq4yg6ql" path="res://entity/enemies/cannon.gd" id="1_1uodq"]
+[ext_resource type="PackedScene" uid="uid://edghe0m6jnhr" path="res://entity/component/hitbox_component.tscn" id="3_8lk0m"]
+[ext_resource type="Texture2D" uid="uid://c2yufm6mr3j2n" path="res://graphics/enemy/Cannon.png" id="4_1uodq"]
+[ext_resource type="PackedScene" uid="uid://dg8lpmf8fbgps" path="res://entity/component/player_damagebox_component.tscn" id="4_q7jax"]
+[ext_resource type="Script" uid="uid://okq1p60kj3ug" path="res://entity/component/health_component.gd" id="5_16i2a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukv5p"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1uodq"]
+size = Vector2(128, 128)
+
+[node name="Cannon" type="CharacterBody2D" unique_id=2065373006 node_paths=PackedStringArray("sprite")]
+z_index = 3
+collision_layer = 4
+script = ExtResource("1_1uodq")
+sprite = NodePath("Sprite")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=813539590]
+shape = SubResource("RectangleShape2D_ukv5p")
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=333647225]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=854437592]
+shape = SubResource("RectangleShape2D_1uodq")
+debug_color = Color(0, 0.6, 0.69803923, 0.1254902)
+
+[node name="HitboxComponent" parent="." unique_id=371201495 node_paths=PackedStringArray("health") instance=ExtResource("3_8lk0m")]
+collision_mask = 256
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=2034281333]
+shape = SubResource("RectangleShape2D_ukv5p")
+
+[node name="PlayerHitboxComponent" parent="." unique_id=775620110 instance=ExtResource("4_q7jax")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitboxComponent" unique_id=311004334]
+shape = SubResource("RectangleShape2D_ukv5p")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Sprite" type="CanvasGroup" parent="." unique_id=21093982]
+
+[node name="Sprite" type="Sprite2D" parent="Sprite" unique_id=126005475]
+texture = ExtResource("4_1uodq")
+hframes = 2
+
+[node name="HealthComponent" type="Node" parent="." unique_id=2077649869]
+script = ExtResource("5_16i2a")
+max_health = 5
+health = 5
+metadata/_custom_type_script = "uid://okq1p60kj3ug"
+
+[node name="VisBox" type="VisibleOnScreenEnabler2D" parent="." unique_id=953561258]
+rect = Rect2(-32, -32, 64, 64)
+
+[connection signal="damaged" from="HitboxComponent" to="." method="_on_damaged"]
+[connection signal="dead" from="HealthComponent" to="." method="_on_health_component_dead"]

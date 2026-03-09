@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dd57nqio5jc0y"]
+
+[ext_resource type="Texture2D" uid="uid://1cv64ofuwvun" path="res://icon.svg" id="1_4hnbk"]
+[ext_resource type="Script" uid="uid://dyhomidm2vcaf" path="res://entity/enemies/enemy.gd" id="1_ydnxe"]
+[ext_resource type="PackedScene" uid="uid://d0vbfsam5masf" path="res://entity/effects/puff.tscn" id="2_ukv5p"]
+[ext_resource type="PackedScene" uid="uid://edghe0m6jnhr" path="res://entity/component/hitbox_component.tscn" id="2_ydnxe"]
+[ext_resource type="Script" uid="uid://okq1p60kj3ug" path="res://entity/component/health_component.gd" id="3_mac58"]
+[ext_resource type="PackedScene" uid="uid://dg8lpmf8fbgps" path="res://entity/component/player_damagebox_component.tscn" id="4_mac58"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukv5p"]
+size = Vector2(48, 48)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=753583102 node_paths=PackedStringArray("sprite")]
+z_index = 3
+collision_layer = 4
+script = ExtResource("1_ydnxe")
+sprite = NodePath("Sprite")
+spawn_on_death = ExtResource("2_ukv5p")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=327630328]
+shape = SubResource("RectangleShape2D_ukv5p")
+
+[node name="HitboxComponent" parent="." unique_id=1287543332 node_paths=PackedStringArray("health") instance=ExtResource("2_ydnxe")]
+collision_mask = 256
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1971812606]
+shape = SubResource("RectangleShape2D_ukv5p")
+
+[node name="PlayerHitboxComponent" parent="." unique_id=1044415993 instance=ExtResource("4_mac58")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitboxComponent" unique_id=845543999]
+shape = SubResource("RectangleShape2D_ukv5p")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Sprite" type="CanvasGroup" parent="." unique_id=329489499]
+
+[node name="Sprite" type="Sprite2D" parent="Sprite" unique_id=1495601387]
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("1_4hnbk")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=851835030]
+script = ExtResource("3_mac58")
+max_health = 3
+health = 3
+metadata/_custom_type_script = "uid://okq1p60kj3ug"
+
+[node name="VisBox" type="VisibleOnScreenEnabler2D" parent="." unique_id=1191314450]
+rect = Rect2(-32, -32, 64, 64)
+
+[connection signal="damaged" from="HitboxComponent" to="." method="_on_damaged"]
+[connection signal="dead" from="HealthComponent" to="." method="_on_health_component_dead"]

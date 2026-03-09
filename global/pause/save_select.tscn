@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://clvcypad2appk"]
+
+[ext_resource type="Script" uid="uid://bo6cw71c4rktg" path="res://global/pause/save_select.gd" id="1_0plff"]
+[ext_resource type="Script" uid="uid://bep624vho42fb" path="res://script/input_manager.gd" id="2_6xk1d"]
+[ext_resource type="AudioStream" uid="uid://dqc7oxhtvsvp1" path="res://audio/misc/radio.wav" id="3_peotl"]
+[ext_resource type="AudioStream" uid="uid://c6jusmw3ko4n2" path="res://audio/enemy/Hit.wav" id="4_fmqgs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jl6p"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xk1d"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="SaveSelect" type="CanvasLayer" unique_id=1173040984]
+process_mode = 3
+layer = 25
+script = ExtResource("1_0plff")
+
+[node name="Panel" type="Panel" parent="." unique_id=438744485]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5jl6p")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=925171406]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="SaveSlots" type="VBoxContainer" parent="Panel/ScrollContainer" unique_id=991539553]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+alignment = 1
+
+[node name="InputManager" type="Node" parent="." unique_id=1988582662]
+script = ExtResource("2_6xk1d")
+metadata/_custom_type_script = "uid://bep624vho42fb"
+
+[node name="Highlight" type="Panel" parent="." unique_id=1016791482]
+offset_left = 16.0
+offset_right = 296.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6xk1d")
+
+[node name="SaveNotifier" type="Label" parent="Highlight" unique_id=522328519]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = 13.0
+offset_right = 44.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "FILE SAVED!"
+
+[node name="Save" type="AudioStreamPlayer" parent="." unique_id=445343885]
+stream = ExtResource("3_peotl")
+pitch_scale = 0.7
+bus = &"SFX"
+
+[node name="Error" type="AudioStreamPlayer" parent="." unique_id=256675850]
+stream = ExtResource("4_fmqgs")
+bus = &"SFX"
+
+[connection signal="down_pressed" from="InputManager" to="." method="_on_input_manager_down_pressed"]
+[connection signal="jump_pressed" from="InputManager" to="." method="_confirm_pressed"]
+[connection signal="shoot_pressed" from="InputManager" to="." method="_cancel_pressed"]
+[connection signal="start_pressed" from="InputManager" to="." method="_confirm_pressed"]
+[connection signal="up_pressed" from="InputManager" to="." method="_on_input_manager_up_pressed"]

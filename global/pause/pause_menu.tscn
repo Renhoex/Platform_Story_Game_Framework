@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://66c55m6xxk3e"]
+
+[ext_resource type="Script" uid="uid://8tovpa5dthan" path="res://global/pause/pause_menu.gd" id="1_bdspp"]
+[ext_resource type="Script" uid="uid://bep624vho42fb" path="res://script/input_manager.gd" id="2_gqoxn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nanyb"]
+bg_color = Color(0.10736697, 0.104109265, 0.22234738, 0.9490196)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6f4t"]
+bg_color = Color(1, 1, 1, 0.3019608)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqoxn"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=16455179]
+process_mode = 2
+layer = 10
+script = ExtResource("1_bdspp")
+
+[node name="InputManager" type="Node" parent="." unique_id=30035314]
+process_mode = 4
+script = ExtResource("2_gqoxn")
+metadata/_custom_type_script = "uid://bep624vho42fb"
+
+[node name="Weapons" type="Panel" parent="." unique_id=523883876]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 304.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nanyb")
+
+[node name="Clip" type="Control" parent="Weapons" unique_id=815178890]
+clip_children = 1
+clip_contents = true
+layout_mode = 1
+anchor_left = 0.024305556
+anchor_top = 0.14583333
+anchor_right = 0.9722222
+anchor_bottom = 0.8541667
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SelectedWeapon" type="Panel" parent="Weapons/Clip" unique_id=840649748]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 34)
+layout_mode = 0
+offset_right = 34.0
+offset_bottom = 34.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x6f4t")
+
+[node name="WeaponList" type="HBoxContainer" parent="Weapons/Clip" unique_id=1150523101]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 473.0
+offset_bottom = 33.0
+theme_override_constants/separation = 8
+
+[node name="Items" type="Panel" parent="." unique_id=1969881412]
+offset_left = 16.0
+offset_top = 68.0
+offset_right = 304.0
+offset_bottom = 188.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nanyb")
+
+[node name="container" type="Control" parent="Items" unique_id=122303977]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 2.0
+offset_right = -8.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemList" type="GridContainer" parent="Items/container" unique_id=1641905412]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 272.0
+offset_bottom = 152.0
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 7
+
+[node name="InfoBox" type="Panel" parent="." unique_id=1170104822]
+offset_left = 16.0
+offset_top = 192.0
+offset_right = 304.0
+offset_bottom = 232.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nanyb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InfoBox" unique_id=1874615307]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+scroll_active = false
+
+[node name="Highlighter" type="Panel" parent="." unique_id=1352885929]
+unique_name_in_owner = true
+offset_left = 62.0
+offset_top = 22.0
+offset_right = 98.0
+offset_bottom = 58.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gqoxn")
+
+[connection signal="down_pressed" from="InputManager" to="." method="_on_input_manager_down_pressed"]
+[connection signal="jump_pressed" from="InputManager" to="." method="_on_input_manager_jump_pressed"]
+[connection signal="left_pressed" from="InputManager" to="." method="_on_input_manager_left_pressed"]
+[connection signal="right_pressed" from="InputManager" to="." method="_on_input_manager_right_pressed"]
+[connection signal="start_pressed" from="InputManager" to="." method="_on_input_manager_start_pressed"]
+[connection signal="up_pressed" from="InputManager" to="." method="_on_input_manager_up_pressed"]

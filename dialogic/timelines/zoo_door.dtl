@@ -1,0 +1,11 @@
+do Global.set_current_item("ZooKey", false)
+if {EVENTS.zoo_door_unlocked} == false:
+	if {ITEMS.collected} == true:
+		Use the Zoo key to open the door?
+		- Use the Key
+			audio "res://audio/weapons/Fire.wav"
+			Unlocked the Door
+			set {EVENTS.zoo_door_unlocked} = true
+		- Nevermind
+	else:
+		It's locked, there's a plaque underneath titled "Zoo Door" looks like it needs a key.

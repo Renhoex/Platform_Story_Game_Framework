@@ -1,0 +1,7 @@
+audio "res://audio/misc/radio.wav"
+* Click! *
+radio: BOB! Have you initiated the game start timeline sequence!?\
+[pause=0.5]We only have one shot to pull it off so don't screw it up!
+radio: When you finish down there head up [wave]HERE[/wave] so we can get ready to show the Dialogic implamentation!
+* Click! *
+set {EVENTS.intro_played} = true

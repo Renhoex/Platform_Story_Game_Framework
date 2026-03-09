@@ -1,0 +1,8 @@
+do DialogicFunctions.stop_global_music()
+audio "res://audio/weapons/Impact.wav"
+audio music-one-shot "res://audio/music/reveal.ogg"
+do GlobalHud.set_item_vis(true)
+got {ITEMS.item_name}[ns=4]
+[wait_input hide_text="false"]
+do DialogicFunctions.play_global_music()
+do GlobalHud.set_item_vis(false)

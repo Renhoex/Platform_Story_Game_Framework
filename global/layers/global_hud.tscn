@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://5b0rfccsv14q"]
+
+[ext_resource type="Script" uid="uid://deckawtryr8v0" path="res://global/layers/global_hud.gd" id="1_7v44d"]
+[ext_resource type="Texture2D" uid="uid://cswgffteljjaw" path="res://graphics/item_icons/Key.png" id="2_f15si"]
+[ext_resource type="Texture2D" uid="uid://6dcnsj65d8v" path="res://graphics/item_icons/weapons/Standard.png" id="3_vbgg4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wr7ix"]
+bg_color = Color(0.25490198, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqp0r"]
+bg_color = Color(1, 0, 0.28235295, 1)
+
+[node name="HUD" type="CanvasLayer" unique_id=1970182903]
+layer = 7
+script = ExtResource("1_7v44d")
+
+[node name="CoverIcon" type="CanvasLayer" parent="." unique_id=689713016]
+layer = 15
+
+[node name="ItemIcon" type="Panel" parent="CoverIcon" unique_id=653056240]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Texture" type="TextureRect" parent="CoverIcon/ItemIcon" unique_id=1080379517]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_f15si")
+stretch_mode = 3
+
+[node name="PlayerHud" type="Control" parent="." unique_id=1017874832]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 80.0
+offset_bottom = 48.0
+
+[node name="WeaponIcon" type="TextureRect" parent="PlayerHud" unique_id=1109860607]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("3_vbgg4")
+stretch_mode = 3
+
+[node name="Ammo" type="Label" parent="PlayerHud" unique_id=569708915]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 16.0
+text = "10/10"
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerHud" unique_id=1419048226]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.22200002
+anchor_right = 1.0
+offset_left = 0.01599884
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_wr7ix")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mqp0r")
+value = 50.0
+show_percentage = false
+
+[node name="Health" type="Label" parent="PlayerHud" unique_id=229571131]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 72.0
+offset_bottom = 8.0
+text = "10/10"
+horizontal_alignment = 1
+
+[node name="BossMeter" type="Control" parent="." unique_id=1575053062]
+visible = false
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Border" type="Panel" parent="BossMeter" unique_id=734809024]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 308.0
+offset_bottom = 20.0
+
+[node name="HealthBar" type="ProgressBar" parent="BossMeter" unique_id=505683185]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_wr7ix")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mqp0r")
+value = 50.0
+show_percentage = false
+
+[node name="BossLabel" type="Label" parent="BossMeter" unique_id=1096812860]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 56.0
+offset_bottom = 8.0
+text = "Boss"

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bxkpced3hqspg"
+path="res://.godot/imported/Voltz Supreme - Analog Ambience - 2B IS2 TD3.ogg-f0d2e8f46184831bdc269113c0c5057c.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/VoltzSupreme_Analog_Tracks/Voltz Supreme - Analog Ambience - 2B IS2 TD3.ogg"
+dest_files=["res://.godot/imported/Voltz Supreme - Analog Ambience - 2B IS2 TD3.ogg-f0d2e8f46184831bdc269113c0c5057c.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

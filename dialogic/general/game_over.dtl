@@ -1,0 +1,9 @@
+You have perished.
+if Progress.has_saves() == true:
+	Load Game?
+	- Yes
+		do Global.call_save_menu(true, false)
+	- No
+		do Global.reset_game()
+else:
+	do Global.reset_game()

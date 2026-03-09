@@ -1,0 +1,564 @@
+[gd_scene format=4 uid="uid://chbafpv7cfy5y"]
+
+[ext_resource type="Script" uid="uid://b3f8pavovxg0t" path="res://script/stage_handler.gd" id="1_ld6hk"]
+[ext_resource type="AudioStream" uid="uid://m7bfnypguroo" path="res://audio/music/VoltzSupreme_Analog_Tracks/07 - Low Fog.ogg" id="2_er7v8"]
+[ext_resource type="TileSet" uid="uid://clvtg8expv1se" path="res://tileset/GenericTiles.tres" id="3_5na4e"]
+[ext_resource type="PackedScene" uid="uid://bu84x0ebcelqu" path="res://entity/items/health_upgrade.tscn" id="4_hwfdd"]
+[ext_resource type="PackedScene" uid="uid://bftlgmdbuxl4k" path="res://entity/player/Player.tscn" id="5_nyms3"]
+[ext_resource type="Script" uid="uid://bm2nk6sck1waf" path="res://script/game_camera.gd" id="6_eiq1p"]
+[ext_resource type="PackedScene" uid="uid://ck35ggynovue2" path="res://entity/general/area.tscn" id="7_0lu0b"]
+[ext_resource type="Texture2D" uid="uid://eyp21spypg2b" path="res://graphics/backgrounds/snow_bg.png" id="8_for3y"]
+[ext_resource type="Texture2D" uid="uid://bgv8a41460kf0" path="res://graphics/backgrounds/cloudLayer1.png" id="9_eoue5"]
+[ext_resource type="Texture2D" uid="uid://bauhu1id6fd7s" path="res://graphics/tiles/TilesetTemplate.png" id="9_v5pmr"]
+[ext_resource type="Script" uid="uid://2miwjqo8t1qo" path="res://script/sequence_components/classes/interact_trigger.gd" id="10_42gjd"]
+[ext_resource type="Texture2D" uid="uid://dtqe5pmuctnoc" path="res://graphics/interacts/Sign.png" id="11_nyms3"]
+[ext_resource type="Script" uid="uid://kgq02v78e6jr" path="res://script/sequence_components/classes/timeline_manager.gd" id="11_scglw"]
+[ext_resource type="PackedScene" uid="uid://b3rsiqs1s3shc" path="res://entity/items/chest.tscn" id="12_eiq1p"]
+[ext_resource type="Script" uid="uid://doavmky5w26mo" path="res://script/sequence_components/node_actions/visbility_setter.gd" id="12_hwfdd"]
+[ext_resource type="Script" uid="uid://c23w18ufbe0cv" path="res://script/sequence_components/node_actions/play_sound.gd" id="13_7s24y"]
+[ext_resource type="AudioStream" uid="uid://dpjwnmbd265uq" path="res://audio/objects/door.wav" id="14_8guwm"]
+[ext_resource type="Script" uid="uid://b72nmsuvttep" path="res://script/sequence_components/dialogic_related/call_dialogic_timeline.gd" id="14_eiq1p"]
+[ext_resource type="Script" uid="uid://moljmrl158ru" path="res://script/sequence_components/node_actions/fade_to.gd" id="15_er7v8"]
+[ext_resource type="Script" uid="uid://o6aeatn8nwgk" path="res://script/sequence_components/node_actions/teleport_node.gd" id="15_q70do"]
+[ext_resource type="Script" uid="uid://gdd2sye8w0cy" path="res://script/sequence_components/node_actions/change_scene.gd" id="16_5na4e"]
+[ext_resource type="PackedScene" uid="uid://bpgrkqkpqga1x" path="res://entity/npcs/npc.tscn" id="21_0lu0b"]
+[ext_resource type="Script" uid="uid://bwu1qxptebi1y" path="res://script/sequence_components/npc_actions/set_NPC_direction.gd" id="22_for3y"]
+[ext_resource type="Script" uid="uid://cd74g5mnshiky" path="res://script/sequence_components/npc_actions/set_NPC_state.gd" id="23_eoue5"]
+[ext_resource type="Script" uid="uid://bnp66yrtosywm" path="res://script/sequence_components/player_actions/set_player_direction.gd" id="24_42gjd"]
+[ext_resource type="Script" uid="uid://c7kdai0isnysi" path="res://script/logic/dialogic_signals.gd" id="25_scglw"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yk7ts"]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lu0b"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5na4e"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_for3y"]
+size = Vector2(16, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_42gjd"]
+size = Vector2(32, 8)
+
+[node name="MainDeck" type="Node2D" unique_id=1714093947]
+script = ExtResource("1_ld6hk")
+stage_song = ExtResource("2_er7v8")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=546483137]
+texture_filter = 1
+texture_repeat = 1
+tile_map_data = PackedByteArray("AAAwAA8AAAABAAMAAAAwAA4AAAADAAQAAAAwAA0AAAADAAQAAAAwAAwAAAADAAQAAAAwAAsAAAADAAQAAAAwAAoAAAADAAQAAAAwAAkAAAADAAQAAAAwAAgAAAADAAQAAAAwAAcAAAADAAQAAAAwAAYAAAADAAQAAAAwAAUAAAADAAQAAAAwAAQAAAADAAQAAAAwAAMAAAADAAQAAAAwAAIAAAADAAQAAAAwAAEAAAADAAQAAAAwAAAAAAADAAQAAAAwAP//AAABAAIAAAAvAA8AAAAAAAUAAAAvAA4AAAAAAAAAAAAvAA0AAAAAAAAAAAAvAAwAAAAAAAAAAAAvAAsAAAAAAAAAAAAvAAoAAAAAAAAAAAAvAAkAAAAAAAAAAAAvAAgAAAAAAAAAAAAvAAcAAAAAAAAAAAAvAAYAAAAAAAAAAAAvAAUAAAAAAAAAAAAvAAQAAAAAAAAAAAAvAAMAAAAAAAAAAAAvAAIAAAAAAAAAAAAvAAEAAAAAAAAAAAAvAAAAAAAAAAAAAAAvAP//AAAAAAQAAAAuAA8AAAAAAAUAAAAuAA4AAAAAAAAAAAAuAA0AAAAAAAAAAAAuAAwAAAAAAAAAAAAuAAsAAAAAAAAAAAAuAAoAAAAAAAAAAAAuAAkAAAAAAAAAAAAuAAgAAAAAAAAAAAAuAAcAAAAAAAAAAAAuAAYAAAAAAAAAAAAuAAUAAAAAAAAAAAAuAAQAAAAAAAAAAAAuAAMAAAAAAAAAAAAuAAIAAAAAAAAAAAAuAAEAAAAAAAAAAAAuAAAAAAAAAAAAAAAuAP//AAAAAAQAAAAtAA8AAAAAAAUAAAAtAA4AAAAAAAAAAAAtAA0AAAAAAAAAAAAtAAwAAAAAAAAAAAAtAAsAAAAAAAAAAAAtAAoAAAAAAAAAAAAtAAkAAAAAAAAAAAAtAAgAAAAAAAAAAAAtAAcAAAAAAAAAAAAtAAYAAAAAAAAAAAAtAAUAAAAAAAAAAAAtAAQAAAAAAAAAAAAtAAMAAAAAAAAAAAAtAAIAAAAAAAAAAAAtAAEAAAAAAAAAAAAtAAAAAAAAAAAAAAAtAP//AAAAAAQAAAAsAA8AAAAAAAUAAAAsAA4AAAAAAAAAAAAsAA0AAAAAAAAAAAAsAAwAAAADAAMAAAAsAAsAAAACAAQAAAAsAAoAAAACAAQAAAAsAAkAAAACAAQAAAAsAAgAAAACAAQAAAAsAAcAAAADAAIAAAAsAAYAAAADAAMAAAAsAAUAAAACAAQAAAAsAAQAAAACAAQAAAAsAAMAAAADAAIAAAAsAAIAAAAAAAAAAAAsAAEAAAAAAAAAAAAsAAAAAAAAAAAAAAAsAP//AAAAAAQAAAArAA8AAAAAAAUAAAArAA4AAAAAAAAAAAArAA0AAAAAAAAAAAArAAwAAAAAAAQAAAArAAMAAAAAAAUAAAArAAIAAAAAAAAAAAArAAEAAAAAAAAAAAArAAAAAAAAAAAAAAArAP//AAAAAAQAAAAqAA8AAAAAAAUAAAAqAA4AAAAAAAAAAAAqAA0AAAAAAAAAAAAqAAwAAAAAAAQAAAAqAAMAAAAAAAMAAAAqAAIAAAADAAIAAAAqAAEAAAAAAAAAAAAqAAAAAAAAAAAAAAAqAP//AAAAAAQAAAApAA8AAAAAAAUAAAApAA4AAAAAAAAAAAApAA0AAAAAAAAAAAApAAwAAAAAAAQAAAApAAAAAAAAAAAAAAApAP//AAAAAAQAAAAoAA8AAAAAAAUAAAAoAA4AAAAAAAAAAAAoAA0AAAAAAAAAAAAoAAwAAAAAAAQAAAAoAAAAAAAAAAAAAAAoAP//AAAAAAQAAAAnAA8AAAAAAAUAAAAnAA4AAAAAAAAAAAAnAA0AAAAAAAAAAAAnAAwAAAAAAAQAAAAnAAAAAAADAAIAAAAnAP//AAAAAAQAAAAmAA8AAAAAAAUAAAAmAA4AAAAAAAAAAAAmAA0AAAAAAAAAAAAmAAwAAAAAAAQAAAAmAAAAAAAAAAUAAAAmAP//AAAAAAQAAAAlAA8AAAAAAAUAAAAlAA4AAAAAAAAAAAAlAA0AAAAAAAAAAAAlAAwAAAAAAAQAAAAlAAAAAAAAAAUAAAAlAP//AAAAAAQAAAAkAA8AAAAAAAUAAAAkAA4AAAAAAAAAAAAkAA0AAAAAAAAAAAAkAAwAAAAAAAQAAAAkAAAAAAAAAAUAAAAkAP//AAAAAAQAAAAjAA8AAAAAAAUAAAAjAA4AAAAAAAAAAAAjAA0AAAAAAAAAAAAjAAwAAAAAAAQAAAAjAAAAAAAAAAUAAAAjAP//AAAAAAQAAAAiAA8AAAAAAAUAAAAiAA4AAAAAAAAAAAAiAA0AAAAAAAAAAAAiAAwAAAAAAAQAAAAiAAAAAAAAAAUAAAAiAP//AAAAAAQAAAAhAA8AAAAAAAUAAAAhAA4AAAAAAAAAAAAhAA0AAAAAAAAAAAAhAAwAAAAAAAQAAAAhAAAAAAAAAAUAAAAhAP//AAAAAAQAAAAgAA8AAAAAAAUAAAAgAA4AAAAAAAAAAAAgAA0AAAAAAAAAAAAgAAwAAAAAAAQAAAAgAAcAAAAAAAUAAAAgAAYAAAAAAAAAAAAgAAUAAAAAAAQAAAAgAAAAAAAAAAUAAAAgAP//AAAAAAQAAAAfAA8AAAAAAAUAAAAfAA4AAAAAAAAAAAAfAA0AAAAAAAAAAAAfAAwAAAAAAAQAAAAfAAcAAAAAAAUAAAAfAAYAAAAAAAAAAAAfAAUAAAAAAAQAAAAfAAAAAAAAAAUAAAAfAP//AAAAAAQAAAAeAA8AAAAAAAUAAAAeAA4AAAAAAAAAAAAeAA0AAAAAAAAAAAAeAAwAAAAAAAQAAAAeAAcAAAAAAAUAAAAeAAYAAAAAAAAAAAAeAAUAAAAAAAQAAAAeAAAAAAAAAAUAAAAeAP//AAAAAAQAAAAdAA8AAAAAAAUAAAAdAA4AAAAAAAAAAAAdAA0AAAAAAAAAAAAdAAwAAAAAAAQAAAAdAAcAAAAAAAUAAAAdAAYAAAAAAAAAAAAdAAUAAAAAAAQAAAAdAAAAAAAAAAUAAAAdAP//AAAAAAQAAAAcAA8AAAAAAAUAAAAcAA4AAAAAAAAAAAAcAA0AAAADAAMAAAAcAAwAAAAAAAIAAAAcAAcAAAAAAAUAAAAcAAYAAAAAAAAAAAAcAAUAAAAAAAQAAAAcAAAAAAAAAAUAAAAcAP//AAAAAAQAAAAbAA8AAAAAAAUAAAAbAA4AAAAAAAAAAAAbAA0AAAAAAAQAAAAbAAwAAAAGAAkAAAAbAAcAAAAAAAUAAAAbAAYAAAAAAAAAAAAbAAUAAAAAAAQAAAAbAAAAAAAAAAUAAAAbAP//AAAAAAQAAAAaAA8AAAAAAAUAAAAaAA4AAAAAAAAAAAAaAA0AAAAAAAQAAAAaAAwAAAAFAAkAAAAaAAcAAAAAAAUAAAAaAAYAAAAAAAAAAAAaAAUAAAAAAAQAAAAaAAAAAAAAAAUAAAAaAP//AAAAAAQAAAAZAA8AAAAAAAUAAAAZAA4AAAAAAAAAAAAZAA0AAAAAAAQAAAAZAAwAAAAFAAkAAAAZAAcAAAAAAAUAAAAZAAYAAAAAAAAAAAAZAAUAAAAAAAQAAAAZAAAAAAAAAAUAAAAZAP//AAAAAAQAAAAYAA8AAAAAAAUAAAAYAA4AAAAAAAAAAAAYAA0AAAAAAAQAAAAYAAwAAAAFAAkAAAAYAAcAAAAAAAUAAAAYAAYAAAAAAAAAAAAYAAUAAAAAAAQAAAAYAAAAAAAAAAUAAAAYAP//AAAAAAQAAAAXAA8AAAAAAAUAAAAXAA4AAAAAAAAAAAAXAA0AAAAAAAQAAAAXAAwAAAAFAAkAAAAXAAcAAAAAAAUAAAAXAAYAAAAAAAAAAAAXAAUAAAAAAAQAAAAXAAAAAAAAAAUAAAAXAP//AAAAAAQAAAAWAA8AAAAAAAUAAAAWAA4AAAAAAAAAAAAWAA0AAAAAAAQAAAAWAAwAAAAEAAkAAAAWAAcAAAAAAAUAAAAWAAYAAAAAAAAAAAAWAAUAAAAAAAQAAAAWAAAAAAAAAAUAAAAWAP//AAAAAAQAAAAVAA8AAAAAAAUAAAAVAA4AAAAAAAAAAAAVAA0AAAACAAMAAAAVAAwAAAABAAIAAAAVAAcAAAAAAAUAAAAVAAYAAAAAAAAAAAAVAAUAAAAAAAQAAAAVAAAAAAAAAAUAAAAVAP//AAAAAAQAAAAUAA8AAAAAAAUAAAAUAA4AAAAAAAAAAAAUAA0AAAAAAAAAAAAUAAwAAAAAAAQAAAAUAAcAAAAAAAUAAAAUAAYAAAAAAAAAAAAUAAUAAAAAAAQAAAAUAAAAAAAAAAUAAAAUAP//AAAAAAQAAAATAA8AAAAAAAUAAAATAA4AAAAAAAAAAAATAA0AAAAAAAAAAAATAAwAAAAAAAQAAAATAAcAAAAAAAUAAAATAAYAAAAAAAAAAAATAAUAAAAAAAQAAAATAAAAAAAAAAUAAAATAP//AAAAAAQAAAASAA8AAAAAAAUAAAASAA4AAAAAAAAAAAASAA0AAAAAAAAAAAASAAwAAAAAAAQAAAASAAcAAAAAAAMAAAASAAYAAAACAAQAAAASAAUAAAAAAAIAAAASAAAAAAAAAAUAAAASAP//AAAAAAQAAAARAA8AAAAAAAUAAAARAA4AAAAAAAAAAAARAA0AAAAAAAAAAAARAAwAAAAAAAQAAAARAAAAAAAAAAUAAAARAP//AAAAAAQAAAAQAA8AAAAAAAUAAAAQAA4AAAAAAAAAAAAQAA0AAAAAAAAAAAAQAAwAAAAAAAQAAAAQAAAAAAAAAAUAAAAQAP//AAAAAAQAAAAPAA8AAAAAAAUAAAAPAA4AAAAAAAAAAAAPAA0AAAAAAAAAAAAPAAwAAAAAAAQAAAAPAAAAAAAAAAUAAAAPAP//AAAAAAQAAAAOAA8AAAAAAAUAAAAOAA4AAAAAAAAAAAAOAA0AAAAAAAAAAAAOAAwAAAAAAAQAAAAOAAAAAAAAAAUAAAAOAP//AAAAAAQAAAANAA8AAAAAAAUAAAANAA4AAAAAAAAAAAANAA0AAAAAAAAAAAANAAwAAAAAAAQAAAANAAAAAAAAAAUAAAANAP//AAAAAAQAAAAMAA8AAAAAAAUAAAAMAA4AAAAAAAAAAAAMAA0AAAAAAAAAAAAMAAwAAAAAAAQAAAAMAAAAAAAAAAUAAAAMAP//AAAAAAQAAAALAA8AAAAAAAUAAAALAA4AAAAAAAAAAAALAA0AAAAAAAAAAAALAAwAAAAAAAQAAAALAAcAAAABAAMAAAALAAAAAAAAAAUAAAALAP//AAAAAAQAAAAKAA8AAAAAAAUAAAAKAA4AAAAAAAAAAAAKAA0AAAAAAAAAAAAKAAwAAAAAAAQAAAAKAAcAAAAAAAUAAAAKAAAAAAAAAAUAAAAKAP//AAAAAAQAAAAJAA8AAAAAAAUAAAAJAA4AAAAAAAAAAAAJAA0AAAAAAAAAAAAJAAwAAAAAAAQAAAAJAAcAAAAAAAUAAAAJAAYAAAABAAYAAAAJAAAAAAAAAAUAAAAJAP//AAAAAAQAAAAIAA8AAAAAAAUAAAAIAA4AAAAAAAAAAAAIAA0AAAAAAAAAAAAIAAwAAAAAAAQAAAAIAAcAAAAAAAUAAAAIAAYAAAAAAAAAAAAIAAUAAAAAAAQAAAAIAAAAAAAAAAUAAAAIAP//AAAAAAQAAAAHAA8AAAAAAAUAAAAHAA4AAAAAAAAAAAAHAA0AAAAAAAAAAAAHAAwAAAAAAAQAAAAHAAcAAAAAAAUAAAAHAAYAAAAAAAAAAAAHAAUAAAAAAAQAAAAHAAAAAAAAAAUAAAAHAP//AAAAAAQAAAAGAA8AAAAAAAUAAAAGAA4AAAAAAAAAAAAGAA0AAAAAAAAAAAAGAAwAAAAAAAQAAAAGAAcAAAAAAAUAAAAGAAYAAAAAAAAAAAAGAAUAAAAAAAQAAAAGAAAAAAAAAAUAAAAGAP//AAAAAAQAAAAFAA8AAAAAAAMAAAAFAA4AAAACAAQAAAAFAA0AAAACAAQAAAAFAAwAAAAAAAIAAAAFAAcAAAAAAAUAAAAFAAYAAAAAAAAAAAAFAAUAAAAAAAQAAAAFAAAAAAAAAAUAAAAFAP//AAAAAAQAAAAEAAcAAAAAAAUAAAAEAAYAAAAAAAAAAAAEAAUAAAAAAAQAAAAEAAAAAAAAAAUAAAAEAP//AAAAAAQAAAADAAcAAAAAAAUAAAADAAYAAAAAAAAAAAADAAUAAAAAAAQAAAADAAAAAAAAAAUAAAADAP//AAAAAAQAAAACAA8AAAABAAMAAAACAA4AAAADAAQAAAACAA0AAAADAAQAAAACAAwAAAADAAQAAAACAAsAAAADAAQAAAACAAoAAAADAAQAAAACAAkAAAADAAQAAAACAAgAAAADAAQAAAACAAcAAAACAAIAAAACAAYAAAAAAAAAAAACAAUAAAAAAAQAAAACAAAAAAAAAAUAAAACAP//AAAAAAQAAAABAA8AAAAAAAUAAAABAA4AAAAAAAAAAAABAA0AAAAAAAAAAAABAAwAAAAAAAAAAAABAAsAAAAAAAAAAAABAAoAAAAAAAAAAAABAAkAAAAAAAAAAAABAAgAAAAAAAAAAAABAAcAAAAAAAAAAAABAAYAAAAAAAAAAAABAAUAAAACAAMAAAABAAQAAAADAAQAAAABAAMAAAADAAQAAAABAAIAAAADAAQAAAABAAEAAAADAAQAAAABAAAAAAACAAIAAAABAP//AAAAAAQAAAAAAA8AAAAAAAUAAAAAAA4AAAAAAAAAAAAAAA0AAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//AAAAAAQAAAD//w8AAAAAAAMAAAD//w4AAAACAAQAAAD//w0AAAACAAQAAAD//wwAAAACAAQAAAD//wsAAAACAAQAAAD//woAAAACAAQAAAD//wkAAAACAAQAAAD//wgAAAACAAQAAAD//wcAAAACAAQAAAD//wYAAAACAAQAAAD//wUAAAACAAQAAAD//wQAAAACAAQAAAD//wMAAAACAAQAAAD//wIAAAACAAQAAAD//wEAAAACAAQAAAD//wAAAAACAAQAAAD/////AAAAAAIAAAApAAIAAAAAAAUAAAApAAEAAAAAAAAAAAAoAAIAAAAAAAUAAAAoAAEAAAAAAAAAAAAnAAIAAAAAAAMAAAAnAAEAAAACAAQAAAAEAA8AAAABAAMAAAADAA8AAAAAAAMAAAAEAAQAAAAIAAIAAAAaAAQAAAAIAAIAAAAqAAsAAAAIAAIAAAArAAcAAAAAAAUAAAArAAYAAAAAAAQAAAAqAAcAAAAAAAUAAAAqAAYAAAAAAAQAAAApAAcAAAAAAAUAAAApAAYAAAAAAAQAAAAoAAcAAAAAAAUAAAAoAAYAAAAAAAQAAAAnAAcAAAAAAAUAAAAnAAYAAAAAAAQAAAAmAAcAAAAAAAUAAAAmAAYAAAAAAAQAAAAlAAcAAAAAAAUAAAAlAAYAAAAAAAQAAAAkAAcAAAAAAAMAAAAkAAYAAAAAAAIAAAAoAAUAAAAIAAIAAAAjAAYAAAAGAAYAAAAhAAUAAAABAAIAAAAhAAYAAAADAAQAAAAhAAcAAAABAAMAAAAJAAIAAAAJAAIAAAAUAAIAAAAJAAIAAAAfAAIAAAAJAAIAAAALAAYAAAABAAIAAAAKAAYAAAAAAAQAAABFACEAAAAAAAAAAABFACAAAAAAAAAAAABFAB8AAAAAAAAAAABFAB4AAAAAAAAAAABFAB0AAAAAAAAAAABFABwAAAAAAAAAAABFABsAAAAAAAAAAABFABoAAAAAAAAAAABFABkAAAAAAAAAAABFABgAAAAAAAAAAABFABcAAAAAAAAAAABFABYAAAAAAAAAAABFABUAAAAAAAAAAABEACEAAAAAAAAAAABEACAAAAAAAAAAAABEAB8AAAAAAAAAAABEAB4AAAAAAAAAAABEABwAAAACAAQAAABEABsAAAACAAQAAABEABoAAAACAAQAAABEABkAAAACAAQAAABEABgAAAACAAQAAABEABcAAAACAAQAAABEABYAAAAAAAAAAABEABUAAAAAAAAAAABDACEAAAAAAAAAAABDACAAAAAAAAAAAABCACEAAAAAAAAAAABCACAAAAAAAAAAAABBACEAAAAAAAAAAABBACAAAAAAAAAAAABAACEAAAAAAAAAAABAACAAAAAAAAAAAAA/ACEAAAAAAAAAAAA/ACAAAAAAAAAAAAA+ACEAAAAAAAAAAAA+ACAAAAAAAAAAAAA9ACEAAAAAAAAAAAA9ACAAAAAAAAAAAAA8ACEAAAAAAAAAAAA8ACAAAAAAAAAAAAA7ACEAAAAAAAAAAAA7ACAAAAAAAAAAAAA6ACEAAAAAAAAAAAA6ACAAAAAAAAAAAAA5ACEAAAAAAAAAAAA5ACAAAAAAAAAAAAA4ACEAAAAAAAAAAAA4ACAAAAAAAAAAAAA3ACEAAAAAAAAAAAA3ACAAAAAAAAAAAAA2ACEAAAAAAAAAAAA2ACAAAAAAAAAAAAA1ACEAAAAAAAAAAAA1ACAAAAAAAAAAAAA0ACEAAAAAAAAAAAA0ACAAAAAAAAAAAAAzACEAAAAAAAAAAAAzACAAAAAAAAAAAAAyACEAAAAAAAAAAAAyACAAAAAAAAAAAAAxACEAAAAAAAAAAAAxACAAAAAAAAAAAAAxAB8AAAAAAAAAAAAxAB4AAAAAAAAAAAAxAB0AAAAAAAAAAAAxABwAAAACAAMAAAAxABsAAAADAAQAAAAxABoAAAADAAQAAAAxABkAAAADAAQAAAAxABgAAAADAAQAAAAxABcAAAADAAQAAAAxABYAAAAAAAAAAAAxABUAAAAAAAAAAAAwACEAAAAAAAAAAAAwACAAAAAAAAAAAAAwAB8AAAAAAAAAAAAwAB4AAAAAAAAAAAAwAB0AAAAAAAAAAAAwABwAAAAAAAAAAAAwABsAAAAAAAAAAAAwABoAAAAAAAAAAAAwABkAAAAAAAAAAAAwABgAAAAAAAAAAAAwABcAAAAAAAAAAAAwABYAAAAAAAAAAAAwABUAAAAAAAAAAABDAB8AAAAAAAAAAABCAB8AAAAAAAAAAABBAB8AAAAAAAAAAABBAB4AAAAAAAQAAABAAB8AAAAAAAAAAABAAB4AAAAAAAQAAAA/AB8AAAAAAAAAAAA/AB4AAAAAAAQAAAA+AB8AAAAAAAAAAAA+AB4AAAAAAAQAAAA9AB8AAAAAAAAAAAA9AB4AAAAAAAQAAAA8AB8AAAAAAAAAAAA8AB4AAAAAAAQAAAA7AB8AAAAAAAAAAAA7AB4AAAAAAAQAAAA6AB8AAAAAAAAAAAA6AB4AAAAAAAQAAAA5AB8AAAAAAAAAAAA4AB8AAAAAAAAAAAA3AB8AAAAAAAAAAAA2AB8AAAAAAAAAAAA1AB8AAAAAAAAAAAA0AB8AAAAAAAAAAAAzAB8AAAAAAAAAAAAyAB8AAAAAAAAAAAA3AB0AAAAGAAQAAAA2AB4AAAAAAAAAAAA3AB4AAAAAAAAAAAAyABwAAAAAAAQAAAAyAB0AAAAAAAAAAAAyAB4AAAAAAAAAAAAzABwAAAAAAAQAAAAzAB0AAAAAAAAAAAAzAB4AAAAAAAAAAAA0ABwAAAAAAAQAAAA0AB0AAAAAAAAAAAA0AB4AAAAAAAAAAAA1ABwAAAAAAAQAAAA1AB0AAAAAAAAAAAA1AB4AAAAAAAAAAAA5ABsAAAAAAAQAAAA6ABsAAAAAAAQAAAA7ABsAAAAAAAQAAAA8ABsAAAAAAAQAAAA9ABsAAAAAAAQAAAA+ABsAAAAAAAQAAAA/ABsAAAAAAAQAAABAABsAAAAAAAQAAAA5ABUAAAAAAAAAAAA6ABUAAAAAAAAAAAA7ABUAAAAAAAAAAAA8ABUAAAAAAAAAAAA9ABUAAAAAAAAAAAA+ABUAAAAAAAAAAAA/ABUAAAAAAAAAAABAABUAAAAAAAAAAABBABUAAAAAAAAAAABCABUAAAAAAAAAAABDABUAAAAAAAAAAAAzABsAAAAIAAIAAAA6AB0AAAAAAAAAAAA6ABwAAAAAAAAAAAA6ABYAAAAAAAUAAABAABwAAAAIAAYAAAA+AB0AAAAHAAkAAAA/ABwAAAAIAAgAAAAyABsAAAAIAAgAAAAyABUAAAAAAAAAAAA1ABUAAAAAAAAAAAA1ABYAAAAAAAUAAAAyABYAAAAAAAUAAAAzABYAAAAAAAUAAAA0ABYAAAAAAAUAAAA+ABwAAAAIAAgAAABCABYAAAAAAAUAAABDABsAAAAIAAgAAABEAB0AAAACAAQAAABDAB0AAAAIAAgAAABCAB0AAAAIAAgAAABCAB4AAAAAAAQAAABDAB4AAAAAAAQAAABCABwAAAAHAAkAAABBABsAAAAHAAkAAABCABoAAAAHAAkAAABBABoAAAAIAAgAAAAzABUAAAAAAAAAAAA0ABUAAAAAAAAAAAA2ABUAAAAAAAAAAAA2ABYAAAAAAAUAAAA3ABUAAAAAAAAAAAA3ABYAAAAAAAUAAAA4ABUAAAAAAAAAAAA4ABYAAAAAAAUAAAA5ABYAAAAAAAUAAAA7ABYAAAAAAAUAAAA8ABYAAAAAAAUAAAA9ABYAAAAAAAUAAAA+ABYAAAAAAAUAAAA/ABYAAAAAAAUAAABAABYAAAAAAAUAAABBABYAAAAAAAUAAABDABYAAAAAAAUAAAAwABQAAAAAAAAAAAAxABQAAAAAAAAAAAAyABQAAAAAAAAAAAAzABQAAAAAAAAAAAA0ABQAAAAAAAAAAAA1ABQAAAAAAAAAAAA2ABQAAAAAAAAAAAA3ABQAAAAAAAAAAAA4ABQAAAAAAAAAAAA5ABQAAAAAAAAAAAA6ABQAAAAAAAAAAAA7ABQAAAAAAAAAAAA8ABQAAAAAAAAAAAA9ABQAAAAAAAAAAAA+ABQAAAAAAAAAAAA/ABQAAAAAAAAAAABAABQAAAAAAAAAAABBABQAAAAAAAAAAABCABQAAAAAAAAAAABDABQAAAAAAAAAAABEABQAAAAAAAAAAABFABQAAAAAAAAAAAAwACIAAAAAAAAAAAAwACMAAAAAAAAAAAAxACIAAAAAAAAAAAAxACMAAAAAAAAAAAAyACIAAAAAAAAAAAAyACMAAAAAAAAAAAAzACIAAAAAAAAAAAAzACMAAAAAAAAAAAA0ACIAAAAAAAAAAAA0ACMAAAAAAAAAAAA1ACIAAAAAAAAAAAA1ACMAAAAAAAAAAAA2ACIAAAAAAAAAAAA2ACMAAAAAAAAAAAA3ACIAAAAAAAAAAAA3ACMAAAAAAAAAAAA4ACIAAAAAAAAAAAA4ACMAAAAAAAAAAAA5ACIAAAAAAAAAAAA5ACMAAAAAAAAAAAA6ACIAAAAAAAAAAAA6ACMAAAAAAAAAAAA7ACIAAAAAAAAAAAA7ACMAAAAAAAAAAAA8ACIAAAAAAAAAAAA8ACMAAAAAAAAAAAA9ACIAAAAAAAAAAAA9ACMAAAAAAAAAAAA+ACIAAAAAAAAAAAA+ACMAAAAAAAAAAAA/ACIAAAAAAAAAAAA/ACMAAAAAAAAAAABAACIAAAAAAAAAAABAACMAAAAAAAAAAABBACIAAAAAAAAAAABBACMAAAAAAAAAAABCACIAAAAAAAAAAABCACMAAAAAAAAAAABDACIAAAAAAAAAAABDACMAAAAAAAAAAABEACIAAAAAAAAAAABEACMAAAAAAAAAAABFACIAAAAAAAAAAABFACMAAAAAAAAAAAA3ABwAAAAEAAQAAAA2ABwAAAAAAAQAAAA5AB4AAAAGAAQAAAA5AB0AAAAAAAAAAAA4AB0AAAAAAAAAAAA5ABwAAAAAAAAAAAA7AB0AAAAAAAAAAAA8AB0AAAAAAAAAAAA8ABwAAAAAAAAAAAA7ABwAAAAAAAAAAAA9AB0AAAAAAAAAAAA9ABwAAAAAAAAAAAAKAAsAAQAAAAAAAQAKAAoAAQAAAAAAAQAKAAkAAQAAAAAAAQAKAAgAAQAAAAAAAQBAABoAAQAAAAAAAQA/ABoAAQAAAAAAAQBBABkAAQAAAAAAAQBCABkAAQAAAAAAAQBDABkAAQAAAAAAAQBDABgAAQAAAAAAAQBCABgAAQAAAAAAAQA=")
+tile_set = ExtResource("3_5na4e")
+
+[node name="Health" parent="." unique_id=141113660 instance=ExtResource("4_hwfdd")]
+z_index = -1
+position = Vector2(1064, 408)
+
+[node name="Player" parent="." unique_id=580920674 instance=ExtResource("5_nyms3")]
+position = Vector2(824, 440)
+ready_on_spawn = false
+
+[node name="GameCamera" type="Camera2D" parent="." unique_id=848801069 node_paths=PackedStringArray("target_node")]
+position = Vector2(128, 256)
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("6_eiq1p")
+target_node = NodePath("../Player")
+
+[node name="Barrier" parent="." unique_id=1613246382 instance=ExtResource("7_0lu0b")]
+offset_right = 776.0
+
+[node name="Barrier2" parent="." unique_id=434518705 instance=ExtResource("7_0lu0b")]
+offset_left = 464.0
+offset_top = 112.0
+offset_right = 784.0
+border_sides = 4
+
+[node name="Barrier3" parent="." unique_id=250410222 instance=ExtResource("7_0lu0b")]
+offset_left = 784.0
+offset_top = 336.0
+offset_right = 1104.0
+offset_bottom = 576.0
+
+[node name="BG" type="CanvasLayer" parent="." unique_id=1361254584]
+layer = -10
+
+[node name="Distance" type="Parallax2D" parent="BG" unique_id=806665811]
+scroll_scale = Vector2(1.1, 1)
+repeat_size = Vector2(94, 0)
+repeat_times = 22
+
+[node name="BG" type="Sprite2D" parent="BG/Distance" unique_id=1411784389]
+position = Vector2(0, 136)
+texture = ExtResource("8_for3y")
+region_enabled = true
+region_rect = Rect2(0, -147, 96, 296)
+
+[node name="Clouds" type="Parallax2D" parent="BG" unique_id=203600858]
+scroll_scale = Vector2(1.5, 1)
+repeat_size = Vector2(256, 0)
+autoscroll = Vector2(-10, 0)
+repeat_times = 22
+
+[node name="BG" type="Sprite2D" parent="BG/Clouds" unique_id=2000064124]
+material = SubResource("CanvasItemMaterial_yk7ts")
+position = Vector2(160, 40)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_eoue5")
+flip_v = true
+region_rect = Rect2(0, -147, 96, 296)
+
+[node name="ColorRect" type="ColorRect" parent="BG" unique_id=475395856]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.039215688, 0.21960784, 0.827451)
+
+[node name="Label" type="Label" parent="." unique_id=2046894638]
+offset_left = 400.0
+offset_top = 48.0
+offset_right = 448.0
+offset_bottom = 56.0
+text = "Armory"
+
+[node name="Sign" type="Area2D" parent="." unique_id=1902791386 node_paths=PackedStringArray("timeline_target")]
+position = Vector2(256, 184)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("10_42gjd")
+timeline_target = NodePath("Sign")
+unlock_after_sequence = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign" unique_id=784626175]
+shape = SubResource("RectangleShape2D_0lu0b")
+
+[node name="SignSprite" type="Sprite2D" parent="Sign" unique_id=73410779]
+texture = ExtResource("11_nyms3")
+
+[node name="Sign" type="Node" parent="Sign" unique_id=1982933810]
+script = ExtResource("11_scglw")
+
+[node name="Sign" type="Node" parent="Sign/Sign" unique_id=2001223609]
+script = ExtResource("14_eiq1p")
+timeline = "uid://bau466wpu5oca"
+
+[node name="Entities" type="Node2D" parent="." unique_id=258166466]
+
+[node name="WeaponChest" parent="Entities" unique_id=433126718 instance=ExtResource("12_eiq1p")]
+position = Vector2(968, 424)
+is_weapon = true
+item_id = "Standard"
+
+[node name="NPC" parent="Entities" unique_id=1103506319 instance=ExtResource("21_0lu0b")]
+position = Vector2(928, 424)
+direction = 1
+
+[node name="Interact" type="Area2D" parent="Entities/NPC" unique_id=416329716 node_paths=PackedStringArray("timeline_target")]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("10_42gjd")
+timeline_target = NodePath("NPCGuy")
+unlock_after_sequence = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/NPC/Interact" unique_id=351453007]
+shape = SubResource("RectangleShape2D_0lu0b")
+
+[node name="NPCGuy" type="Node" parent="Entities/NPC/Interact" unique_id=275541304]
+script = ExtResource("11_scglw")
+
+[node name="NPCGuy" type="Node" parent="Entities/NPC/Interact/NPCGuy" unique_id=1478383687]
+script = ExtResource("14_eiq1p")
+timeline = "uid://cewkas2w6vc8s"
+
+[node name="Doors" type="Node2D" parent="Entities" unique_id=2124002758]
+
+[node name="Door" type="Area2D" parent="Entities/Doors" unique_id=1257805411 node_paths=PackedStringArray("timeline_target")]
+position = Vector2(72, 72)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("10_42gjd")
+timeline_target = NodePath("WestOpenDoor")
+unlock_after_sequence = true
+
+[node name="WestStartDoor" type="Node" parent="Entities/Doors/Door" unique_id=1836711281]
+script = ExtResource("11_scglw")
+
+[node name="TeleportPlayer" type="Node" parent="Entities/Doors/Door/WestStartDoor" unique_id=1020563531 node_paths=PackedStringArray("teleport_to", "node_to_teleport")]
+script = ExtResource("15_q70do")
+teleport_to = NodePath("../..")
+node_to_teleport = NodePath("../../../../../Player")
+
+[node name="WestOpenDoor" type="Node" parent="Entities/Doors/Door" unique_id=1804329423]
+script = ExtResource("11_scglw")
+
+[node name="HideSprite" type="Node" parent="Entities/Doors/Door/WestOpenDoor" unique_id=1880553488 node_paths=PackedStringArray("set_node")]
+script = ExtResource("12_hwfdd")
+set_node = NodePath("../../DoorCover")
+
+[node name="DoorSound" type="Node" parent="Entities/Doors/Door/WestOpenDoor" unique_id=586172691]
+script = ExtResource("13_7s24y")
+sound = ExtResource("14_8guwm")
+
+[node name="Fade" type="Node" parent="Entities/Doors/Door/WestOpenDoor" unique_id=279326437]
+script = ExtResource("15_er7v8")
+fade_time = 0.2
+
+[node name="Timer" type="Timer" parent="Entities/Doors/Door/WestOpenDoor" unique_id=1574856788]
+wait_time = 0.2
+one_shot = true
+
+[node name="Change" type="Node" parent="Entities/Doors/Door/WestOpenDoor" unique_id=995449831]
+script = ExtResource("16_5na4e")
+connected_sequence_name = "DoorStart"
+scene_file = "res://scenes/EntryWay.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Doors/Door" unique_id=1939235839]
+shape = SubResource("RectangleShape2D_5na4e")
+
+[node name="DoorCover" type="Sprite2D" parent="Entities/Doors/Door" unique_id=1052335628]
+position = Vector2(0, -8)
+texture = ExtResource("9_v5pmr")
+region_enabled = true
+region_rect = Rect2(128, 0, 16, 32)
+
+[node name="ArmoryDoor" type="Area2D" parent="Entities/Doors" unique_id=549104895 node_paths=PackedStringArray("timeline_target")]
+position = Vector2(424, 72)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("10_42gjd")
+timeline_target = NodePath("ArmoryDoor")
+unlock_after_sequence = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Doors/ArmoryDoor" unique_id=331555115]
+shape = SubResource("RectangleShape2D_5na4e")
+
+[node name="ArmoryDoor" type="Node" parent="Entities/Doors/ArmoryDoor" unique_id=405775552]
+script = ExtResource("11_scglw")
+
+[node name="Fade" type="Node" parent="Entities/Doors/ArmoryDoor/ArmoryDoor" unique_id=1461633831]
+script = ExtResource("15_er7v8")
+fade_time = 0.2
+
+[node name="Timer" type="Timer" parent="Entities/Doors/ArmoryDoor/ArmoryDoor" unique_id=1588817639]
+wait_time = 0.2
+one_shot = true
+
+[node name="TeleportPlayer" type="Node" parent="Entities/Doors/ArmoryDoor/ArmoryDoor" unique_id=1409399802 node_paths=PackedStringArray("teleport_to", "node_to_teleport")]
+script = ExtResource("15_q70do")
+teleport_to = NodePath("../../../ArmoryExit")
+node_to_teleport = NodePath("../../../../../Player")
+
+[node name="Timer2" type="Timer" parent="Entities/Doors/ArmoryDoor/ArmoryDoor" unique_id=597799029]
+wait_time = 0.1
+one_shot = true
+
+[node name="Fade2" type="Node" parent="Entities/Doors/ArmoryDoor/ArmoryDoor" unique_id=2062928006]
+script = ExtResource("15_er7v8")
+color_fade = Color(0, 0, 0, 0)
+fade_time = 0.2
+
+[node name="ArmoryExit" type="Area2D" parent="Entities/Doors" unique_id=2043112691 node_paths=PackedStringArray("timeline_target")]
+position = Vector2(824, 440)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("10_42gjd")
+timeline_target = NodePath("ArmoryExit")
+unlock_after_sequence = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Doors/ArmoryExit" unique_id=1942631449]
+shape = SubResource("RectangleShape2D_5na4e")
+
+[node name="ArmoryExit" type="Node" parent="Entities/Doors/ArmoryExit" unique_id=285092085]
+script = ExtResource("11_scglw")
+
+[node name="Fade3" type="Node" parent="Entities/Doors/ArmoryExit/ArmoryExit" unique_id=491401590]
+script = ExtResource("15_er7v8")
+fade_time = 0.2
+
+[node name="Timer" type="Timer" parent="Entities/Doors/ArmoryExit/ArmoryExit" unique_id=2054514418]
+wait_time = 0.2
+one_shot = true
+
+[node name="TeleportPlayer" type="Node" parent="Entities/Doors/ArmoryExit/ArmoryExit" unique_id=554055151 node_paths=PackedStringArray("teleport_to", "node_to_teleport")]
+script = ExtResource("15_q70do")
+teleport_to = NodePath("../../../ArmoryDoor")
+node_to_teleport = NodePath("../../../../../Player")
+
+[node name="Timer2" type="Timer" parent="Entities/Doors/ArmoryExit/ArmoryExit" unique_id=136580072]
+wait_time = 0.1
+one_shot = true
+
+[node name="Fade4" type="Node" parent="Entities/Doors/ArmoryExit/ArmoryExit" unique_id=294851820]
+script = ExtResource("15_er7v8")
+color_fade = Color(0, 0, 0, 0)
+fade_time = 0.2
+
+[node name="DoorToUpper" type="Area2D" parent="Entities/Doors" unique_id=1756061080 node_paths=PackedStringArray("timeline_target")]
+position = Vector2(680, 184)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("10_42gjd")
+timeline_target = NodePath("DoorToUpper")
+unlock_after_sequence = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Doors/DoorToUpper" unique_id=206962714]
+shape = SubResource("RectangleShape2D_5na4e")
+
+[node name="DoorCover" type="Sprite2D" parent="Entities/Doors/DoorToUpper" unique_id=1090875128]
+position = Vector2(0, -8)
+texture = ExtResource("9_v5pmr")
+region_enabled = true
+region_rect = Rect2(128, 0, 16, 32)
+
+[node name="DoorToUpper" type="Node" parent="Entities/Doors/DoorToUpper" unique_id=2132536745]
+script = ExtResource("11_scglw")
+
+[node name="HideSprite" type="Node" parent="Entities/Doors/DoorToUpper/DoorToUpper" unique_id=1537150109 node_paths=PackedStringArray("set_node")]
+script = ExtResource("12_hwfdd")
+set_node = NodePath("../../DoorCover")
+
+[node name="DoorSound" type="Node" parent="Entities/Doors/DoorToUpper/DoorToUpper" unique_id=975022429]
+script = ExtResource("13_7s24y")
+sound = ExtResource("14_8guwm")
+
+[node name="Timer" type="Timer" parent="Entities/Doors/DoorToUpper/DoorToUpper" unique_id=2138165032]
+wait_time = 0.5
+one_shot = true
+
+[node name="HidePlayer" type="Node" parent="Entities/Doors/DoorToUpper/DoorToUpper" unique_id=514894677 node_paths=PackedStringArray("set_node")]
+script = ExtResource("12_hwfdd")
+set_node = NodePath("../../../../../Player")
+
+[node name="DoorSound2" type="Node" parent="Entities/Doors/DoorToUpper/DoorToUpper" unique_id=1978220801]
+script = ExtResource("13_7s24y")
+sound = ExtResource("14_8guwm")
+
+[node name="ShowDoor" type="Node" parent="Entities/Doors/DoorToUpper/DoorToUpper" unique_id=595681782 node_paths=PackedStringArray("set_node")]
+script = ExtResource("12_hwfdd")
+set_visibility = 1
+set_node = NodePath("../../DoorCover")
+
+[node name="Timer2" type="Timer" parent="Entities/Doors/DoorToUpper/DoorToUpper" unique_id=319815349]
+wait_time = 0.2
+one_shot = true
+
+[node name="TeleportPlayer" type="Node" parent="Entities/Doors/DoorToUpper/DoorToUpper" unique_id=974134318 node_paths=PackedStringArray("teleport_to", "node_to_teleport")]
+script = ExtResource("15_q70do")
+teleport_to = NodePath("../../../DoorToLower")
+node_to_teleport = NodePath("../../../../../Player")
+
+[node name="HideSprite2" type="Node" parent="Entities/Doors/DoorToUpper/DoorToUpper" unique_id=442560959 node_paths=PackedStringArray("set_node")]
+script = ExtResource("12_hwfdd")
+set_node = NodePath("../../../DoorToLower/DoorCover")
+
+[node name="DoorSound3" type="Node" parent="Entities/Doors/DoorToUpper/DoorToUpper" unique_id=1025655353]
+script = ExtResource("13_7s24y")
+sound = ExtResource("14_8guwm")
+
+[node name="Timer3" type="Timer" parent="Entities/Doors/DoorToUpper/DoorToUpper" unique_id=529450555]
+wait_time = 0.2
+one_shot = true
+
+[node name="ShowPlayer" type="Node" parent="Entities/Doors/DoorToUpper/DoorToUpper" unique_id=174010750 node_paths=PackedStringArray("set_node")]
+script = ExtResource("12_hwfdd")
+set_visibility = 1
+set_node = NodePath("../../../../../Player")
+
+[node name="Timer4" type="Timer" parent="Entities/Doors/DoorToUpper/DoorToUpper" unique_id=304792953]
+wait_time = 0.2
+one_shot = true
+
+[node name="DoorSound4" type="Node" parent="Entities/Doors/DoorToUpper/DoorToUpper" unique_id=561450276]
+script = ExtResource("13_7s24y")
+sound = ExtResource("14_8guwm")
+
+[node name="ShowDoor2" type="Node" parent="Entities/Doors/DoorToUpper/DoorToUpper" unique_id=1215982901 node_paths=PackedStringArray("set_node")]
+script = ExtResource("12_hwfdd")
+set_visibility = 1
+set_node = NodePath("../../../DoorToLower/DoorCover")
+
+[node name="DoorToLower" type="Area2D" parent="Entities/Doors" unique_id=809078545 node_paths=PackedStringArray("timeline_target")]
+position = Vector2(648, 88)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("10_42gjd")
+timeline_target = NodePath("DoorToLower")
+unlock_after_sequence = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Doors/DoorToLower" unique_id=885680821]
+shape = SubResource("RectangleShape2D_5na4e")
+
+[node name="DoorCover" type="Sprite2D" parent="Entities/Doors/DoorToLower" unique_id=1797852833]
+position = Vector2(0, -8)
+texture = ExtResource("9_v5pmr")
+region_enabled = true
+region_rect = Rect2(128, 0, 16, 32)
+
+[node name="DoorToLower" type="Node" parent="Entities/Doors/DoorToLower" unique_id=1477311322]
+script = ExtResource("11_scglw")
+
+[node name="HideSprite" type="Node" parent="Entities/Doors/DoorToLower/DoorToLower" unique_id=387150667 node_paths=PackedStringArray("set_node")]
+script = ExtResource("12_hwfdd")
+set_node = NodePath("../../DoorCover")
+
+[node name="DoorSound" type="Node" parent="Entities/Doors/DoorToLower/DoorToLower" unique_id=666630765]
+script = ExtResource("13_7s24y")
+sound = ExtResource("14_8guwm")
+
+[node name="Timer" type="Timer" parent="Entities/Doors/DoorToLower/DoorToLower" unique_id=794202650]
+wait_time = 0.5
+one_shot = true
+
+[node name="HidePlayer" type="Node" parent="Entities/Doors/DoorToLower/DoorToLower" unique_id=425050830 node_paths=PackedStringArray("set_node")]
+script = ExtResource("12_hwfdd")
+set_node = NodePath("../../../../../Player")
+
+[node name="DoorSound2" type="Node" parent="Entities/Doors/DoorToLower/DoorToLower" unique_id=1103481399]
+script = ExtResource("13_7s24y")
+sound = ExtResource("14_8guwm")
+
+[node name="ShowDoor" type="Node" parent="Entities/Doors/DoorToLower/DoorToLower" unique_id=108382823 node_paths=PackedStringArray("set_node")]
+script = ExtResource("12_hwfdd")
+set_visibility = 1
+set_node = NodePath("../../DoorCover")
+
+[node name="Timer2" type="Timer" parent="Entities/Doors/DoorToLower/DoorToLower" unique_id=874059415]
+wait_time = 0.2
+one_shot = true
+
+[node name="TeleportPlayer" type="Node" parent="Entities/Doors/DoorToLower/DoorToLower" unique_id=1283742209 node_paths=PackedStringArray("teleport_to", "node_to_teleport")]
+script = ExtResource("15_q70do")
+teleport_to = NodePath("../../../DoorToUpper")
+node_to_teleport = NodePath("../../../../../Player")
+
+[node name="HideSprite2" type="Node" parent="Entities/Doors/DoorToLower/DoorToLower" unique_id=919437356 node_paths=PackedStringArray("set_node")]
+script = ExtResource("12_hwfdd")
+set_node = NodePath("../../../DoorToUpper/DoorCover")
+
+[node name="DoorSound3" type="Node" parent="Entities/Doors/DoorToLower/DoorToLower" unique_id=1410207477]
+script = ExtResource("13_7s24y")
+sound = ExtResource("14_8guwm")
+
+[node name="Timer3" type="Timer" parent="Entities/Doors/DoorToLower/DoorToLower" unique_id=1602792003]
+wait_time = 0.2
+one_shot = true
+
+[node name="ShowPlayer" type="Node" parent="Entities/Doors/DoorToLower/DoorToLower" unique_id=2122711946 node_paths=PackedStringArray("set_node")]
+script = ExtResource("12_hwfdd")
+set_visibility = 1
+set_node = NodePath("../../../../../Player")
+
+[node name="Timer4" type="Timer" parent="Entities/Doors/DoorToLower/DoorToLower" unique_id=118320994]
+wait_time = 0.2
+one_shot = true
+
+[node name="DoorSound4" type="Node" parent="Entities/Doors/DoorToLower/DoorToLower" unique_id=898774049]
+script = ExtResource("13_7s24y")
+sound = ExtResource("14_8guwm")
+
+[node name="ShowDoor2" type="Node" parent="Entities/Doors/DoorToLower/DoorToLower" unique_id=738647159 node_paths=PackedStringArray("set_node")]
+script = ExtResource("12_hwfdd")
+set_visibility = 1
+set_node = NodePath("../../../DoorToUpper/DoorCover")
+
+[node name="EventTrigger" type="Area2D" parent="Entities" unique_id=1864235112 node_paths=PackedStringArray("timeline_target")]
+position = Vector2(872, 400)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("10_42gjd")
+timeline_target = NodePath("NPCGuyEvents")
+unlock_after_sequence = true
+skip_on_dialogic_variable = "EVENTS.talked_to_guy"
+activate_on_touch = true
+one_time = true
+metadata/_custom_type_script = "uid://2miwjqo8t1qo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/EventTrigger" unique_id=9750786]
+shape = SubResource("RectangleShape2D_for3y")
+
+[node name="NPCGuyEvents" type="Node" parent="Entities/EventTrigger" unique_id=612064181]
+script = ExtResource("11_scglw")
+metadata/_custom_type_script = "uid://kgq02v78e6jr"
+
+[node name="Timer" type="Timer" parent="Entities/EventTrigger/NPCGuyEvents" unique_id=1162630120]
+wait_time = 0.2
+
+[node name="SetGuyDirection" type="Node" parent="Entities/EventTrigger/NPCGuyEvents" unique_id=977565060 node_paths=PackedStringArray("character")]
+script = ExtResource("22_for3y")
+character = NodePath("../../../NPC")
+
+[node name="Timer2" type="Timer" parent="Entities/EventTrigger/NPCGuyEvents" unique_id=1468693004]
+wait_time = 0.5
+
+[node name="GuyDialogue" type="Node" parent="Entities/EventTrigger/NPCGuyEvents" unique_id=419454793]
+script = ExtResource("14_eiq1p")
+timeline = "uid://bx11yv42vm8in"
+
+[node name="MoveGuy" type="Node" parent="Entities/EventTrigger/NPCGuyEvents" unique_id=1446312425 node_paths=PackedStringArray("character")]
+script = ExtResource("23_eoue5")
+character = NodePath("../../../NPC")
+state = 1
+
+[node name="StopGuy" type="Node" parent="Entities/EventTrigger/NPCGuyEvents" unique_id=1909861809 node_paths=PackedStringArray("character")]
+script = ExtResource("23_eoue5")
+character = NodePath("../../../NPC")
+
+[node name="MoveGuy2" type="Node" parent="Entities/EventTrigger/NPCGuyEvents" unique_id=868937588 node_paths=PackedStringArray("character")]
+script = ExtResource("23_eoue5")
+character = NodePath("../../../NPC")
+state = 1
+
+[node name="TurnPlayer" type="Node" parent="Entities/EventTrigger/NPCGuyEvents" unique_id=1487471137 node_paths=PackedStringArray("player")]
+script = ExtResource("24_42gjd")
+player = NodePath("../../../../Player")
+
+[node name="SetGuyDirection2" type="Node" parent="Entities/EventTrigger/NPCGuyEvents" unique_id=579690650 node_paths=PackedStringArray("character")]
+script = ExtResource("22_for3y")
+character = NodePath("../../../NPC")
+direction = 1
+
+[node name="StopGuy2" type="Node" parent="Entities/EventTrigger/NPCGuyEvents" unique_id=21628594 node_paths=PackedStringArray("character")]
+script = ExtResource("23_eoue5")
+character = NodePath("../../../NPC")
+
+[node name="HideGuy" type="Node" parent="Entities/EventTrigger/NPCGuyEvents" unique_id=143257397 node_paths=PackedStringArray("set_node")]
+script = ExtResource("12_hwfdd")
+set_node = NodePath("../../../NPC")
+
+[node name="Warp" type="Area2D" parent="Entities" unique_id=1326862088 node_paths=PackedStringArray("timeline_target")]
+position = Vector2(64, 232)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("10_42gjd")
+timeline_target = NodePath("WarpToZoo")
+unlock_after_sequence = true
+activate_on_touch = true
+metadata/_custom_type_script = "uid://2miwjqo8t1qo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Warp" unique_id=221533238]
+shape = SubResource("RectangleShape2D_42gjd")
+
+[node name="WarpToZoo" type="Node" parent="Entities/Warp" unique_id=1328458638]
+script = ExtResource("11_scglw")
+
+[node name="Fade" type="Node" parent="Entities/Warp/WarpToZoo" unique_id=1199757577]
+script = ExtResource("15_er7v8")
+color_fade = Color(0, 0, 0, 0)
+fade_time = 0.2
+
+[node name="Change" type="Node" parent="Entities/Warp/WarpToZoo" unique_id=761044490]
+script = ExtResource("16_5na4e")
+connected_sequence_name = "Enterance"
+scene_file = "res://scenes/Zoo.tscn"
+
+[node name="EventTimelines" type="Node" parent="." unique_id=1155557782]
+
+[node name="NPCSignal" type="Node" parent="EventTimelines" unique_id=550694803]
+script = ExtResource("25_scglw")
+dialogic_variable = "EVENTS.talked_to_guy"
+
+[connection signal="variable_is_true" from="EventTimelines/NPCSignal" to="Entities/NPC" method="queue_free"]

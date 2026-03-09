@@ -1,0 +1,16 @@
+if {ITEMS.collected} == true:
+	It's empty
+	[end_timeline]
+do DialogicFunctions.stop_global_music()
+audio "res://audio/objects/door.wav"
+Opened the chest
+audio music-one-shot "res://audio/music/reveal.ogg"
+if {ITEMS.is_weapon} == true:
+	do GlobalWeapons.unlock_weapon({ITEMS.item_id})
+else:
+	do GlobalItems.unlock_item({ITEMS.item_id})
+do GlobalHud.set_item_vis(true)
+inside was the {ITEMS.item_name}[ns=4]
+[wait_input hide_text="false"]
+do DialogicFunctions.play_global_music()
+do GlobalHud.set_item_vis(false)

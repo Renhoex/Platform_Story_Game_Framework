@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://x0ir3v1ojisw"]
+
+[ext_resource type="Script" uid="uid://uxdxaufvqfhk" path="res://entity/boss/boss.gd" id="1_uni7b"]
+[ext_resource type="Texture2D" uid="uid://ck0kbp262m2m0" path="res://graphics/boss/BossBall.png" id="2_2tn5f"]
+[ext_resource type="Texture2D" uid="uid://bdofx6sjpocjp" path="res://graphics/boss/BallGuyFace.png" id="3_h5ku4"]
+[ext_resource type="PackedScene" uid="uid://dg8lpmf8fbgps" path="res://entity/component/player_damagebox_component.tscn" id="3_jan1u"]
+[ext_resource type="Script" uid="uid://blw6kslgy4q85" path="res://script/boss/big_bouncer_script.gd" id="4_h5ku4"]
+[ext_resource type="Script" uid="uid://okq1p60kj3ug" path="res://entity/component/health_component.gd" id="5_re0n0"]
+[ext_resource type="PackedScene" uid="uid://edghe0m6jnhr" path="res://entity/component/hitbox_component.tscn" id="6_re0n0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jan1u"]
+radius = 52.0
+
+[node name="BigBouncer" type="CharacterBody2D" unique_id=1223842298 node_paths=PackedStringArray("health", "boss_script", "hitbox", "sprite")]
+collision_layer = 0
+script = ExtResource("1_uni7b")
+health = NodePath("HealthComponent")
+boss_script = NodePath("Script")
+hitbox = NodePath("HitboxComponent")
+sprite = NodePath("Sprite")
+gravity_scale = 0.5
+metadata/_custom_type_script = "uid://uxdxaufvqfhk"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=714116390]
+shape = SubResource("CircleShape2D_jan1u")
+
+[node name="HitboxComponent" parent="." unique_id=2020045033 node_paths=PackedStringArray("health") instance=ExtResource("6_re0n0")]
+collision_mask = 256
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=182649051]
+shape = SubResource("CircleShape2D_jan1u")
+debug_color = Color(0.8558648, 0.23097181, 0.7122489, 0.41960785)
+
+[node name="PlayerHitboxComponent" parent="." unique_id=177258537 instance=ExtResource("3_jan1u")]
+damage = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitboxComponent" unique_id=259845355]
+shape = SubResource("CircleShape2D_jan1u")
+debug_color = Color(0.8558648, 0.23097181, 0.7122489, 0.41960785)
+
+[node name="Sprite" type="CanvasGroup" parent="." unique_id=1335723340]
+
+[node name="BossBall" type="Sprite2D" parent="Sprite" unique_id=1632787601]
+texture = ExtResource("2_2tn5f")
+
+[node name="BallGuyFace" type="Sprite2D" parent="Sprite" unique_id=1573475704]
+position = Vector2(-40, 0)
+texture = ExtResource("3_h5ku4")
+
+[node name="Script" type="Node" parent="." unique_id=364889083]
+script = ExtResource("4_h5ku4")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1397569766]
+script = ExtResource("5_re0n0")
+metadata/_custom_type_script = "uid://okq1p60kj3ug"

@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bu84x0ebcelqu"]
+
+[ext_resource type="Script" uid="uid://cnle8nw82eafg" path="res://entity/items/upgrade.gd" id="1_bodd0"]
+[ext_resource type="Texture2D" uid="uid://cpnvkdpdrqqeh" path="res://graphics/items/HeartContainer.png" id="2_bodd0"]
+[ext_resource type="Script" uid="uid://kgq02v78e6jr" path="res://script/sequence_components/classes/timeline_manager.gd" id="3_c2g8f"]
+[ext_resource type="Script" uid="uid://3gbch5m0joak" path="res://script/sequence_components/dialogic_related/set_item_properties.gd" id="4_ji322"]
+[ext_resource type="Script" uid="uid://b72nmsuvttep" path="res://script/sequence_components/dialogic_related/call_dialogic_timeline.gd" id="6_nf1ab"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tyxve"]
+size = Vector2(4, 4)
+
+[node name="Health" type="Area2D" unique_id=141113660 node_paths=PackedStringArray("set_item", "timeline_target")]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_bodd0")
+set_item = NodePath("Upgrade/SetItem")
+timeline_target = NodePath("Upgrade")
+unlock_after_sequence = true
+one_time = true
+metadata/_custom_type_script = "uid://2miwjqo8t1qo"
+
+[node name="Health" type="Sprite2D" parent="." unique_id=906196780]
+texture = ExtResource("2_bodd0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=152456903]
+shape = SubResource("RectangleShape2D_tyxve")
+
+[node name="Upgrade" type="Node" parent="." unique_id=661497166]
+script = ExtResource("3_c2g8f")
+
+[node name="SetItem" type="Node" parent="Upgrade" unique_id=1474949812]
+script = ExtResource("4_ji322")
+item_id = "HealthUpgrade"
+
+[node name="HealthUpgrade" type="Node" parent="Upgrade" unique_id=1020888693]
+script = ExtResource("6_nf1ab")
+timeline = "uid://d2wnxbpnuu8wr"
+
+[connection signal="interacted" from="." to="." method="_on_interacted"]
+[connection signal="sequence_finished" from="Upgrade" to="." method="_on_upgrade_sequence_finished"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg8lpmf8fbgps"]
+
+[ext_resource type="Script" uid="uid://ce0sqq0tpfjc7" path="res://entity/component/player_damagebox_component.gd" id="1_t25nd"]
+
+[node name="PlayerHitboxComponent" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_t25nd")

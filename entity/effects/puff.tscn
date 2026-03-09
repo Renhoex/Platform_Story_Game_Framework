@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://d0vbfsam5masf"]
+
+[ext_resource type="Texture2D" uid="uid://dxilxfb70rawl" path="res://graphics/effects/Puff.png" id="3_o5quw"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_t86w0"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[node name="Puff" type="CPUParticles2D" unique_id=1562058009]
+material = SubResource("CanvasItemMaterial_t86w0")
+emitting = false
+amount = 1
+texture = ExtResource("3_o5quw")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 90.0
+damping_min = 200.0
+damping_max = 200.0
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[connection signal="finished" from="." to="." method="queue_free"]
+[connection signal="ready" from="." to="." method="set_emitting" binds= [true]]
