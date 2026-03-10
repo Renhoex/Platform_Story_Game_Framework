@@ -21,6 +21,7 @@ func reset() -> void:
 		Item.item_keys[i].reset_to_default()
 	GlobalWeapons.weapon_index = GlobalWeapons.WEAPONS.NONE
 	Player.max_health = 0 # set player max health to 0 so that it can be reset
+	Global.sequence_call = ""
 	
 
 func _process(delta: float) -> void:
