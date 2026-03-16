@@ -136,6 +136,18 @@ grow_vertical = 2
 text = "Created by Sharb - 2026"
 horizontal_alignment = 2
 
+[node name="Version" type="Label" parent="." unique_id=350498809]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 1.0
+offset_right = -8.0
+offset_bottom = -231.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "V1.01"
+
 [node name="InputManager" type="Node" parent="." unique_id=1371191733]
 script = ExtResource("2_2sdm5")
 metadata/_custom_type_script = "uid://bep624vho42fb"

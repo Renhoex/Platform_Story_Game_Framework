@@ -124,9 +124,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if locked: return
 	%StateMachine.get_child(state).process(delta)
-	
-	if Input.is_action_just_pressed("ui_end"):
-		do_damage(5)
 
 
 func _physics_process(delta: float) -> void:
@@ -345,7 +342,7 @@ func weapon_fire_action(rotated_fire:float = 0.0) -> void:
 	# check that there's ammo (and that max ammo isn't 0)
 	if GlobalWeapons.weapon.ammo <= 0 && GlobalWeapons.weapon.max_ammo > 0: return
 	var proj:Projectile = GlobalWeapons.weapon.projectile.duplicate()
-	proj.velocity = Vector2(320.0*direction,0.0)
+	proj.velocity = Vector2(proj.fire_speed*direction,0.0)
 	
 	weapon_sounds.stream = preload("res://audio/weapons/Fire.wav")
 	weapon_sounds.play()

@@ -12,11 +12,23 @@ func _ready() -> void:
 	
 	var dir:PackedStringArray = ResourceLoader.list_directory("res://scenes/")
 	for i in dir:
-		var label:Label = Label.new()
-		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label.text = i
-		label.modulate = Color.DIM_GRAY
-		%StageContainer.add_child(label)
+		# check for sub directory, currently it only goes one folder deep
+		var sub_dir:PackedStringArray = ResourceLoader.list_directory("res://scenes/"+i)
+		if sub_dir:
+			for j in sub_dir:
+				# add additional sub string
+				var label:Label = Label.new()
+				label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				label.text = i+j
+				label.modulate = Color.DIM_GRAY
+				%StageContainer.add_child(label)
+		# if there isn't any sub directory then add the current
+		else:
+			var label:Label = Label.new()
+			label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			label.text = i
+			label.modulate = Color.DIM_GRAY
+			%StageContainer.add_child(label)
 	id = 0
 
 func _input(event: InputEvent) -> void:
