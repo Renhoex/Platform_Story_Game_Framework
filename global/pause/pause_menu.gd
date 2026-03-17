@@ -213,6 +213,8 @@ func _on_input_manager_start_pressed() -> void:
 	unpause()
 
 func _on_input_manager_jump_pressed() -> void:
+	#check if empty
+	if !selected_node: return
 	# do action based on the section
 	if selected_node.get_parent() == %WeaponList:
 		GlobalWeapons.weapon_index = selected_node.get_index() as GlobalWeapons.WEAPONS

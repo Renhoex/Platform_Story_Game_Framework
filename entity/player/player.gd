@@ -116,9 +116,11 @@ func _ready() -> void:
 	input_manager.r_pressed.connect(GlobalWeapons.quick_switch.bind(1))
 	
 	# select first available weapon if one's available
-	for i:Weapon in GlobalWeapons.weapon_objects:
-		if i.collected:
-			GlobalWeapons.weapon_index = i.get_index() as GlobalWeapons.WEAPONS
+	if GlobalWeapons.weapon_index == GlobalWeapons.WEAPONS.NONE:
+		for i:Weapon in GlobalWeapons.weapon_objects:
+			if i.collected:
+				GlobalWeapons.weapon_index = i.get_index() as GlobalWeapons.WEAPONS
+				break
 	%Particle.hide()
 
 func _process(delta: float) -> void:

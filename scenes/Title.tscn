@@ -146,7 +146,7 @@ offset_right = -8.0
 offset_bottom = -231.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "V1.01"
+text = "V1.02"
 
 [node name="InputManager" type="Node" parent="." unique_id=1371191733]
 script = ExtResource("2_2sdm5")
